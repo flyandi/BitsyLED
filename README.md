@@ -1,30 +1,49 @@
 <h1 align="center">
-	<img width="250" src="docs/icon_128.png" alt="BitsyLED">
-</h1>
-<h1 align="center">
-	BitsyLED
+	<img width="250" src="docs/bitsyled@2x.png" alt="BitsyLED">
+	BitsyLED 
 </h1>
 <p align="center">
-	A minimal firmware and configurator to drive RGB leds.
-</h1>
+	A minimal firmware and configurator to drive RGB LED's
+</p>
 
 ---
 
-
 # Introduction
 
-BitsyLED is a minimal firmware to drive RGB LED's (WS2811, WS2812, NeoPixels, etc). It's designed for anything RC but also can be used f
+BitsyLED is a minimal firmware to drive RGB LED's (WS2811, WS2812, NeoPixels, etc). It's designed for anything RC but also can be used for other projects including Christmas lights, Lego's, or even your real car.
 
-BitsyLED is currently in development many things may change however the current version is usable.
+BitsyLED is divided into two parts: The Firmware and the Configurator. 
 
-# Status
+
+## Firmware
+
+The firmware is designed for the BitsyLED board but also can be run on any arduino compatible board.
+
+The default firmware configuration is setup for the BitsyLED board which sports a 16bit ATTINY84 that supports up to 5 selectable configurations. Each configuration can have 3 data strands with up to 10 LED's per strand. 
+
+The firmware can be reconfigured as needed.
+
+## Configurator
+
+The configurator is a visual tool that allows easy setup of LED's and supports various effects such blinking, strobe and pulsing.
+
+<img src="docs/screen_1.png">
+
+The configurator is available currently only as unpacked Chrome extension that needs to be installed manually. Check the release tab for the files.
+
+
+## Status
 
 ALPHA - Use in production with caution.
+
+We are still in the process of finalizing many aspects of this project but it is generally usable.
 
 
 # Installation
 
-All manual!
+Follow the installation notes for installing an unpacked Chrome application.
+
+You will find the latest release in the release tab.
 
 
 ## License
