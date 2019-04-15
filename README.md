@@ -1,5 +1,6 @@
 <h1 align="center">
 	<img width="250" src="docs/bitsyled@2x.png" alt="BitsyLED">
+	<br />
 	BitsyLED 
 </h1>
 <p align="center">
@@ -27,9 +28,12 @@ The firmware can be reconfigured as needed.
 
 The configurator is a visual tool that allows easy setup of LED's and supports various effects such blinking, strobe and pulsing.
 
+It allows to setup different selectable ranges which can be controlled via an PWM RC signal, a 10k Analog Potentiometer or based on Time (TBD).
+
 <img src="docs/screen_1.png">
 
 The configurator is available currently only as unpacked Chrome extension that needs to be installed manually. Check the release tab for the files.
+
 
 
 ## Status
