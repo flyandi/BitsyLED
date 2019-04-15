@@ -25,6 +25,8 @@ import {addRange} from "./data/actions";
 const styles = theme => ({
     root: {
         height: 'calc(100%)',
+        border: `1px solid ${theme.palette.divider}`,
+        overflow: 'hidden'
     },
     menu: {
         boxShadow: theme.shadows[2],

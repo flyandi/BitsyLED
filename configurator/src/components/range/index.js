@@ -28,7 +28,7 @@ const ITEM_HEIGHT = 20;
 const styles = theme => ({
     root: {
         height: theme.spacing.unit * ITEM_HEIGHT,
-        backgroundColor: theme.palette.grey[50],
+        backgroundColor: theme.props.Range.background,
         border:`1px solid ${theme.palette.divider}`,
         borderRadius: theme.shape.borderRadius,
         overflow: 'hidden',
@@ -37,7 +37,7 @@ const styles = theme => ({
         cursor: 'pointer',
     },
     program: {
-        backgroundColor: theme.palette.secondary.light,
+        backgroundColor: theme.palette.secondary[theme.palette.type],
         height: theme.spacing.unit * ITEM_HEIGHT,
         paddingTop: theme.spacing.unit * 2,
     },
@@ -47,7 +47,7 @@ const styles = theme => ({
     },
 
     selected: {
-        border:`1px solid ${theme.palette.primary.dark}`,
+        border:`1px solid ${theme.palette.primary[theme.palette.type]}`,
     },
 
     channelSelected: {
@@ -182,13 +182,13 @@ class _Range extends Component {
                                 {backgroundColor: theme.palette.primary.main},
                                 {backgroundColor: theme.palette.primary.main}
                             ]}
-                            railStyle={{ backgroundColor: theme.palette.secondary.main }}
-                            dotStyle={{borderColor: theme.palette.secondary.main}}
-                            activeDotStyle={{borderColor: theme.palette.primary.main}}
                             handleStyle={[
                                 {borderColor: theme.palette.primary.main},
                                 {borderColor: theme.palette.primary.main}
                             ]}
+                            railStyle={{ backgroundColor: theme.palette.secondary[theme.palette.type]}}
+                            dotStyle={{background: theme.palette.secondary[theme.palette.type], borderColor: theme.palette.secondary[theme.palette.type]}}
+                            activeDotStyle={{background: theme.palette.primary.main, borderColor: theme.palette.primary.main}}
                             min={input.range.min}
                             max={input.range.max}
                             marks={this.marks(input.range.marks, input.range)}

@@ -5,8 +5,9 @@ import React, {Component} from 'react';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Theme from './theme';
+import DarkTheme from './theme/dark';
 import App from './App';
-import {hydrate} from "./data";
+import {hydrate, subscribe} from "./data";
 import {updateSerialDevices} from "./data/serial";
 
 /**
@@ -18,7 +19,8 @@ export default class Loader extends Component {
      * @type {{hydrated: boolean}}
      */
     state = {
-        hydrated: false
+        hydrated: false,
+        darkMode: false,
     }
 
     /**
@@ -28,7 +30,11 @@ export default class Loader extends Component {
         Promise.all([
             hydrate(),
             updateSerialDevices()
-        ]).then(() => this.setState({hydrated: true}))
+        ]).then(() => {
+            this.setState({hydrated: true});
+            subscribe("darkMode", darkMode => this.setState({darkMode}));
+        });
+
     }
 
     /**
@@ -37,11 +43,13 @@ export default class Loader extends Component {
      */
     render() {
 
-        if(!this.state.hydrated) return null;
+        const {darkMode, hydrated} = this.state;
+
+        if(!hydrated) return null;
 
         return (
             <MuiThemeProvider
-                theme={Theme}
+                theme={darkMode ? DarkTheme : Theme}
             >
                 <CssBaseline />
                 <App />

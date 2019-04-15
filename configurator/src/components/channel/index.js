@@ -25,7 +25,6 @@ const styles = theme => ({
     root: {
         padding: theme.spacing.unit * 4,
         height: theme.spacing.unit * ITEM_HEIGHT,
-        backgroundColor: theme.palette.grey[50],
         borderTop:`1px solid ${theme.palette.divider}`,
         overflow: 'hidden',
         paddingRight: theme.spacing.unit * 2,
@@ -34,14 +33,6 @@ const styles = theme => ({
         paddingLeft: theme.spacing.unit * 2,
         paddingRight: theme.spacing.unit * 2,
     },
-
-    selected: {
-        border:`1px solid ${theme.palette.primary.dark}`,
-    },
-
-    channelSelected: {
-        backgroundColor: green[300],
-    }
 });
 
 
@@ -56,8 +47,6 @@ class _Channel extends Component {
      */
     static defaultProps = {
         configuration: false,
-        selected: false,
-        channelSelected: false,
         range: {},
     }
 
@@ -114,18 +103,17 @@ class _Channel extends Component {
                     {!input.range ? null : (
                         <Slider.Range
                             dots
-                            disabled
                             trackStyle={[
                                 {backgroundColor: theme.palette.primary.main},
                                 {backgroundColor: theme.palette.primary.main}
                             ]}
-                            railStyle={{ backgroundColor: theme.palette.secondary.main }}
-                            dotStyle={{borderColor: theme.palette.secondary.main}}
-                            activeDotStyle={{backgroundColor: theme.palette.primary.main, borderColor: theme.palette.primary.main}}
                             handleStyle={[
-                                {backgroundColor: theme.palette.primary.main, borderColor: theme.palette.primary.main},
-                                {backgroundColor: theme.palette.primary.main, borderColor: theme.palette.primary.main}
+                                {borderColor: theme.palette.primary.main},
+                                {borderColor: theme.palette.primary.main}
                             ]}
+                            railStyle={{ backgroundColor: theme.palette.secondary[theme.palette.type]}}
+                            dotStyle={{backgroundColor: theme.palette.secondary[theme.palette.type], borderColor: theme.palette.secondary[theme.palette.type]}}
+                            activeDotStyle={{backgroundColor: theme.palette.primary.main, borderColor: theme.palette.primary.main}}
                             min={input.range.min}
                             max={input.range.max}
                             marks={this.marks(input.range.marks, input.range)}

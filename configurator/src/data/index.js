@@ -10,6 +10,8 @@ export const USE_LOCAL_BUILD = !(window.chrome && window.chrome.serial);
  * @type {{}}
  */
 export const INITIAL = {
+    darkMode: false,
+    serialMonitor: false,
     openConfiguration: false,
     mainMenu: true,
     selectedConfiguration: false,

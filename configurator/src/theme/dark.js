@@ -12,9 +12,9 @@ export default createMuiTheme({
         unit: 5,
     },
     palette: {
-        type: 'light',
+        type: 'dark',
         primary: {
-            main: blue[600]
+            main: blue[400]
         },
         secondary: {
             main: grey[300]
@@ -26,10 +26,10 @@ export default createMuiTheme({
     },
     props: {
         Range: {
-            background: grey[50],
+            background: grey[700],
         },
         Grid: {
-            color: grey[300],
+            color: grey[800],
             selected: grey[500],
         }
     }

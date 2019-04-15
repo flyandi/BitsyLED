@@ -21,8 +21,9 @@ import Tab from '@material-ui/core/Tab';
 import Switch from '@material-ui/core/Switch';
 import Menu from '../menu';
 import {ObjectArray} from "../../lib";
-import {Inputs, Layouts, Defaults} from "../../constants";
-import BitsyLedLogo from '../../resources/bitsyled-logo.png';
+import {getState, setState} from "../../data";
+import {Inputs, Layouts, Defaults, VERSION} from "../../constants";
+import BitsyLedLogo from '../../resources/bitsyled.png';
 import Settings from './settings';
 
 
@@ -178,7 +179,12 @@ class _Browser extends Component {
                                         ) : (
                                             <Switch
                                                 color="primary"
-                                                checked={this.state.checked}
+                                                checked={this.state[item.name] || getState()[item.name]}
+                                                onChange={event => {
+                                                    setState({[item.name]: event.target.checked}, () => {
+                                                        this.setState({[item.name]: event.target.checked});
+                                                    });
+                                                }}
                                             />
                                         )}
                                     </ListItemSecondaryAction>
@@ -192,10 +198,9 @@ class _Browser extends Component {
                             </Grid>
                             <Grid item style={{marginLeft: 20}}>
                                 <Typography gutterBottom variant="h5" color="textSecondary">BitsyLED Configurator</Typography>
-                                <Typography color="textSecondary">Configurator Version 1.0</Typography>
+                                <Typography color="textSecondary">Configurator {VERSION}</Typography>
                                 <Typography>Made by Andy Schwarz (<a target="_blank" href="http://flyandi.net">flyandi.net</a>)</Typography>
                                 <Typography>Licensed under GPLv3.</Typography>
-
                             </Grid>
                         </Grid>
                     </Fragment>

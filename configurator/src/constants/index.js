@@ -6,6 +6,12 @@ import ShapeParamotor from '../resources/shape-paramotor.svg';
 import ShapeCar from '../resources/shape-car.svg';
 
 /**
+ * @type {string}
+ */
+export const VERSION = "0.1a";
+
+
+/**
  * @type {{}}
  * @todo move this into the board section, right now ok for POC
  */

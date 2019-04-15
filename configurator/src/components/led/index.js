@@ -38,11 +38,11 @@ const styles = theme => ({
     },
 
     withGrid: {
-        border:`1px solid ${theme.palette.secondary.main}`,
+        border:`1px solid ${theme.props.Grid.color}`,
     },
 
     withSelected: {
-        border:`1px solid ${theme.palette.secondary.dark}`,
+        border:`1px solid transparent`,
     },
 
     withEdit: {
