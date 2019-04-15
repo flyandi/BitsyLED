@@ -1,0 +1,19 @@
+{
+  "name": "BitsyLED Configurator",
+  "description": "A minimalistic firmware for driving and controlling RGB LED's. Designed for Cars, Drones, Planes, and anything in between",
+  "version": "3",
+  "manifest_version": 2,
+  "permissions": ["serial", "storage"],
+  "minimum_chrome_version": "23",
+  "icons": {
+    "16": "icon_16.png",
+    "128": "icon_128.png",
+    "500": "icon_500.png"
+  },
+  "app": {
+    "background": {
+      "scripts": ["launch.js"],
+      "transient": true
+    }
+  }
+}
