@@ -1,0 +1,77 @@
+{
+  "name": "BitsyLED",
+  "description": "BitsyLED Configurator",
+  "author": "Andy Schwarz (flyandi.net)",
+  "version": "0.1.0",
+  "license": "GNU",
+  "build": {
+    "appId": "net.flyandi.bitsyled",
+    "productName": "BitsyLED Configurator",
+    "copyright": "2018 FLYANDI.NET GNU license",
+    "mac": {
+      "icon": "app/icons/mac/icons.icns",
+      "category": "public.app-category.productivity"
+    },
+    "win": {
+      "icon": "app/icons/win/icon.icns"
+    },
+    "directories": {
+      "buildResources": "app"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flyandi/bitsyled.git"
+  },
+  "dependencies": {
+    "@material-ui/core": "^3.9.2",
+    "@material-ui/icons": "^3.0.2",
+    "cross-env": "^5.2.0",
+    "electron-is-dev": "^1.1.0",
+    "electron-json-storage": "^4.1.6",
+    "electron-updater": "^4.0.6",
+    "material-ui": "^0.20.2",
+    "material-ui-color-picker": "https://github.com/flyandi/material-ui-color-picker",
+    "rc-slider": "^8.6.7",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "react-scripts": "2.1.8",
+    "serialport": "^7.1.4"
+  },
+  "homepage": ".",
+  "main": "public/app.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "dev": "concurrently \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"",
+    "prod": "build -c.extraMetadata.main=build/app.js --mac --win --linux",
+    "release": "build -c.extraMetadata.main=build/app.js --publish=always",
+    "prodx": "build -c.extraMetadata.main=build/app.js --mac",
+    "preprod": "npm run build",
+    "prerelease": "npm run build",
+    "dep": "electron-builder install-app-deps"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "electron": "^4.1.4",
+    "electron-builder": "^20.39.0",
+    "typescript": "^3.4.3",
+    "wait-on": "^3.2.0"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
