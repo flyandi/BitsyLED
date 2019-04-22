@@ -70,9 +70,34 @@ The configurator is available currently only as unpacked Chrome extension that n
 
 ## Hardware
 
-Right now I don't offer a complete build of the board however you can order your own copy on Oshpark:
+Right now I don't offer a complete build of the BitsyLED board however you can order your own copy on Oshpark:
 
-https://oshpark.com/shared_projects/AeP6Ik4a
+### v1.1 
+
+https://oshpark.com/shared_projects/E85sUqFS
+
+Parts needed (DigiKey.com):
+
+- 1x ATTINY84 (Part ATTINY84A-SSURCT-ND) 
+- 1x Capacitor in 805 packaging (587-1304-1-ND) 
+- 1x Diode in SOD-123 packaging (MMSZ5242B-TPMSCT-ND)
+
+
+#### How to use the board
+
+The board has 3 LED channels: Left, Right and Other; plus an input channel that either can be served by an RC-PWM or Analog signal. Ensure that your configuration selectest the proper input.
+
+Additionally the board has a top and bottom SMD connector that is used as a dual function to upload the firmware and as serial port.
+
+Follow the connection diagram below how to connect 
+
+<img src="docs/board.png" />
+
+You will need an USBASP to upload the Firmware and an serial capable board (like FTDI adapter) to upload the configuration from the configurator.
+
+### v2.0
+
+Working on a new board with USB support. Stay tuned.
 
 
 ## Installation

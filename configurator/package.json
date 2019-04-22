@@ -54,7 +54,7 @@
     "prod": "build -c.extraMetadata.main=build/app.js --mac --win --linux",
     "release": "build -c.extraMetadata.main=build/app. --mac --win --linux --publish=always",
     "prodx": "build -c.extraMetadata.main=build/app.js --mac",
-    "preprod": "npm run build"
+    "preprod": "npm run build",
     "prerelease": "npm run build",
     "dep": "electron-builder install-app-deps"
   },
