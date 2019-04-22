@@ -162,7 +162,7 @@
 <wire x1="17" y1="17" x2="0" y2="17" width="0" layer="20"/>
 <wire x1="0" y1="17" x2="0" y2="0" width="0" layer="20"/>
 <text x="13.2842" y="15.2908" size="0.8128" layer="22" rot="MR0">FLYANDI.NET</text>
-<text x="13.3604" y="13.2334" size="1.3" layer="22" rot="MR0">BitsyLED</text>
+<text x="13.2842" y="13.4112" size="1.3" layer="22" rot="MR0">BitsyLED</text>
 <text x="4.4958" y="16.1036" size="1" layer="22" rot="MR270">DT 5V GND</text>
 <text x="4.5466" y="8.128" size="1" layer="22" rot="MR270">DT 5V GND</text>
 <text x="13.4112" y="7.9248" size="1" layer="22" rot="MR270">DT 5V GND</text>
@@ -525,7 +525,10 @@ design rules under a new name.</description>
 <signal name="RC">
 <contactref element="SLAVECTRL" pad="13"/>
 <contactref element="RC" pad="1"/>
-<wire x1="15" y1="9.96" x2="10.8936" y2="11.3868" width="0" layer="19" extent="1-1"/>
+<wire x1="13.5" y1="11.5" x2="11" y2="11.5" width="0.2032" layer="1"/>
+<wire x1="15" y1="10" x2="13.5" y2="11.5" width="0.2032" layer="1"/>
+<wire x1="11" y1="11.5" x2="10.8936" y2="11.3868" width="0.2032" layer="1"/>
+<wire x1="15" y1="10" x2="15" y2="9.96" width="0.2032" layer="1"/>
 </signal>
 <signal name="GND">
 <contactref element="PRG" pad="1"/>
@@ -535,12 +538,32 @@ design rules under a new name.</description>
 <contactref element="LED0" pad="3"/>
 <contactref element="C1" pad="2"/>
 <contactref element="SLAVECTRL" pad="14"/>
-<wire x1="10.8936" y1="12.6568" x2="15" y2="15.04" width="0" layer="19" extent="1-1"/>
-<wire x1="6.7682" y1="15.367" x2="10.8936" y2="12.6568" width="0" layer="19" extent="1-1"/>
-<wire x1="2" y1="15.04" x2="6.7682" y2="15.367" width="0" layer="19" extent="1-1"/>
-<wire x1="15" y1="7.04" x2="10.8936" y2="12.6568" width="0" layer="19" extent="1-1"/>
-<wire x1="2" y1="7.04" x2="2" y2="15.04" width="0" layer="19" extent="1-1"/>
-<wire x1="5.88" y1="1.88" x2="2" y2="7.04" width="0" layer="19" extent="1-1"/>
+<wire x1="3.5" y1="4" x2="5.5" y2="2" width="0.2032" layer="1"/>
+<wire x1="3.5" y1="5.5" x2="3.5" y2="4" width="0.2032" layer="1"/>
+<wire x1="2" y1="7" x2="3.5" y2="5.5" width="0.2032" layer="1"/>
+<wire x1="5.5" y1="2" x2="5.88" y2="1.88" width="0.2032" layer="1"/>
+<wire x1="2" y1="7" x2="2" y2="7.04" width="0.2032" layer="1"/>
+<wire x1="9.5" y1="12.5" x2="10.5" y2="12.5" width="0.2032" layer="1"/>
+<wire x1="7" y1="15" x2="9.5" y2="12.5" width="0.2032" layer="1"/>
+<wire x1="10.5" y1="12.5" x2="10.8936" y2="12.6568" width="0.2032" layer="1"/>
+<wire x1="7" y1="15" x2="6.7682" y2="15.367" width="0.2032" layer="1"/>
+<wire x1="15" y1="15" x2="13.5" y2="15" width="0.2032" layer="16"/>
+<wire x1="13.5" y1="15" x2="2" y2="15" width="0.2032" layer="16"/>
+<wire x1="2" y1="15" x2="2" y2="15.04" width="0.2032" layer="16"/>
+<wire x1="15" y1="15" x2="15" y2="15.04" width="0.2032" layer="16"/>
+<wire x1="13.5" y1="9" x2="15" y2="7.5" width="0.2032" layer="16"/>
+<wire x1="13.5" y1="15" x2="13.5" y2="9" width="0.2032" layer="16"/>
+<wire x1="15" y1="7.5" x2="15" y2="7.04" width="0.2032" layer="16"/>
+<wire x1="13" y1="14.5" x2="11" y2="12.5" width="0.2032" layer="1"/>
+<wire x1="14.5" y1="14.5" x2="13" y2="14.5" width="0.2032" layer="1"/>
+<wire x1="15" y1="15" x2="14.5" y2="14.5" width="0.2032" layer="1"/>
+<wire x1="11" y1="12.5" x2="10.8936" y2="12.6568" width="0.2032" layer="1"/>
+<wire x1="15" y1="15" x2="15" y2="15.04" width="0.2032" layer="1"/>
+<wire x1="6.5" y1="12" x2="2" y2="7.5" width="0.2032" layer="16"/>
+<wire x1="6.5" y1="15" x2="6.5" y2="12" width="0.2032" layer="1"/>
+<wire x1="2" y1="7.5" x2="2" y2="7.04" width="0.2032" layer="16"/>
+<wire x1="6.5" y1="15" x2="6.7682" y2="15.367" width="0.2032" layer="1"/>
+<via x="6.5" y="12" extent="1-16" drill="0.35"/>
 </signal>
 <signal name="5V">
 <contactref element="PRG" pad="2"/>
@@ -548,50 +571,102 @@ design rules under a new name.</description>
 <contactref element="LED2" pad="2"/>
 <contactref element="LED1" pad="2"/>
 <contactref element="RC" pad="2"/>
-<wire x1="15" y1="4.5" x2="15" y2="12.5" width="0" layer="19" extent="1-1"/>
-<wire x1="8.42" y1="1.88" x2="15" y2="4.5" width="0" layer="19" extent="1-1"/>
-<wire x1="2" y1="4.5" x2="8.42" y2="1.88" width="0" layer="19" extent="1-1"/>
-<wire x1="2" y1="12.5" x2="2" y2="4.5" width="0" layer="19" extent="1-1"/>
+<wire x1="8" y1="3" x2="8" y2="2" width="0.2032" layer="1"/>
+<wire x1="7" y1="4" x2="8" y2="3" width="0.2032" layer="1"/>
+<wire x1="4.5" y1="4" x2="7" y2="4" width="0.2032" layer="1"/>
+<wire x1="4" y1="4.5" x2="4.5" y2="4" width="0.2032" layer="1"/>
+<wire x1="4" y1="10.5" x2="4" y2="6.5" width="0.2032" layer="1"/>
+<wire x1="4" y1="6.5" x2="4" y2="4.5" width="0.2032" layer="1"/>
+<wire x1="2" y1="12.5" x2="4" y2="10.5" width="0.2032" layer="1"/>
+<wire x1="8" y1="2" x2="8.42" y2="1.88" width="0.2032" layer="1"/>
+<wire x1="4" y1="6.5" x2="2" y2="4.5" width="0.2032" layer="16"/>
+<wire x1="10" y1="9.5" x2="15" y2="4.5" width="0.2032" layer="16"/>
+<wire x1="10" y1="11" x2="10" y2="10" width="0.2032" layer="16"/>
+<wire x1="10" y1="10" x2="10" y2="9.5" width="0.2032" layer="16"/>
+<wire x1="7.5" y1="13.5" x2="10" y2="11" width="0.2032" layer="16"/>
+<wire x1="3" y1="13.5" x2="7.5" y2="13.5" width="0.2032" layer="16"/>
+<wire x1="2" y1="12.5" x2="3" y2="13.5" width="0.2032" layer="16"/>
+<wire x1="12.5" y1="12.5" x2="15" y2="12.5" width="0.2032" layer="1"/>
+<wire x1="10" y1="10" x2="12.5" y2="12.5" width="0.2032" layer="16"/>
+<via x="4" y="6.5" extent="1-16" drill="0.35"/>
+<via x="12.5" y="12.5" extent="1-16" drill="0.35"/>
 </signal>
 <signal name="SCL">
 <contactref element="SLAVECTRL" pad="9"/>
 <contactref element="PRG" pad="5"/>
-<wire x1="8.42" y1="1.88" x2="10.8936" y2="6.3068" width="0" layer="19" extent="1-16"/>
+<wire x1="9.5" y1="5.5" x2="10.5" y2="6.5" width="0.2032" layer="1"/>
+<wire x1="8.5" y1="4.5" x2="9.5" y2="5.5" width="0.2032" layer="16"/>
+<wire x1="8.5" y1="2" x2="8.5" y2="4.5" width="0.2032" layer="16"/>
+<wire x1="10.5" y1="6.5" x2="10.8936" y2="6.3068" width="0.2032" layer="1"/>
+<wire x1="8.5" y1="2" x2="8.42" y2="1.88" width="0.2032" layer="16"/>
+<via x="9.5" y="5.5" extent="1-16" drill="0.35"/>
 </signal>
 <signal name="SDA">
 <contactref element="SLAVECTRL" pad="7"/>
 <contactref element="PRG" pad="4"/>
-<wire x1="5.2936" y1="5.0368" x2="10.96" y2="1.88" width="0" layer="19" extent="1-16"/>
+<wire x1="8.5" y1="5" x2="5.5" y2="5" width="0.2032" layer="1"/>
+<wire x1="9.5" y1="4" x2="8.5" y2="5" width="0.2032" layer="1"/>
+<wire x1="10.5" y1="3" x2="9.5" y2="4" width="0.2032" layer="16"/>
+<wire x1="10.5" y1="2" x2="10.5" y2="3" width="0.2032" layer="16"/>
+<wire x1="5.5" y1="5" x2="5.2936" y2="5.0368" width="0.2032" layer="1"/>
+<wire x1="10.5" y1="2" x2="10.96" y2="1.88" width="0.2032" layer="16"/>
+<via x="9.5" y="4" extent="1-16" drill="0.35"/>
 </signal>
 <signal name="RESET">
 <contactref element="SLAVECTRL" pad="4"/>
 <contactref element="PRG" pad="6"/>
-<wire x1="5.88" y1="1.88" x2="5.2936" y2="8.8468" width="0" layer="19" extent="1-16"/>
+<wire x1="7" y1="7.5" x2="5.5" y2="9" width="0.2032" layer="1"/>
+<wire x1="7" y1="3" x2="7" y2="7.5" width="0.2032" layer="16"/>
+<wire x1="5.88" y1="1.88" x2="7" y2="3" width="0.2032" layer="16"/>
+<wire x1="5.5" y1="9" x2="5.2936" y2="8.8468" width="0.2032" layer="1"/>
+<via x="7" y="7.5" extent="1-16" drill="0.35"/>
 </signal>
 <signal name="MISO">
 <contactref element="SLAVECTRL" pad="8"/>
 <contactref element="PRG" pad="3"/>
-<wire x1="10.96" y1="1.88" x2="10.8936" y2="5.0368" width="0" layer="19" extent="1-1"/>
+<wire x1="11" y1="2" x2="11" y2="5" width="0.2032" layer="1"/>
+<wire x1="11" y1="5" x2="10.8936" y2="5.0368" width="0.2032" layer="1"/>
+<wire x1="11" y1="2" x2="10.96" y2="1.88" width="0.2032" layer="1"/>
 </signal>
 <signal name="LD0">
 <contactref element="SLAVECTRL" pad="12"/>
 <contactref element="LED0" pad="1"/>
-<wire x1="15" y1="1.96" x2="10.8936" y2="10.1168" width="0" layer="19" extent="1-1"/>
+<wire x1="11.5" y1="10" x2="11" y2="10" width="0.2032" layer="1"/>
+<wire x1="13.5" y1="8" x2="11.5" y2="10" width="0.2032" layer="1"/>
+<wire x1="13.5" y1="3.5" x2="13.5" y2="8" width="0.2032" layer="1"/>
+<wire x1="15" y1="2" x2="13.5" y2="3.5" width="0.2032" layer="1"/>
+<wire x1="11" y1="10" x2="10.8936" y2="10.1168" width="0.2032" layer="1"/>
+<wire x1="15" y1="2" x2="15" y2="1.96" width="0.2032" layer="1"/>
 </signal>
 <signal name="LD1">
 <contactref element="SLAVECTRL" pad="11"/>
 <contactref element="LED1" pad="1"/>
-<wire x1="2" y1="1.96" x2="10.8936" y2="8.8468" width="0" layer="19" extent="1-1"/>
+<wire x1="7" y1="9" x2="10.5" y2="9" width="0.2032" layer="1"/>
+<wire x1="5" y1="7" x2="7" y2="9" width="0.2032" layer="16"/>
+<wire x1="5" y1="5" x2="5" y2="7" width="0.2032" layer="16"/>
+<wire x1="2" y1="2" x2="5" y2="5" width="0.2032" layer="16"/>
+<wire x1="10.5" y1="9" x2="10.8936" y2="8.8468" width="0.2032" layer="1"/>
+<wire x1="2" y1="2" x2="2" y2="1.96" width="0.2032" layer="16"/>
+<via x="7" y="9" extent="1-16" drill="0.35"/>
 </signal>
 <signal name="LD2">
 <contactref element="SLAVECTRL" pad="10"/>
 <contactref element="LED2" pad="1"/>
-<wire x1="2" y1="9.96" x2="10.8936" y2="7.5768" width="0" layer="19" extent="1-1"/>
+<wire x1="9.5" y1="7.5" x2="10.5" y2="7.5" width="0.2032" layer="1"/>
+<wire x1="9.5" y1="10.5" x2="9.5" y2="7.5" width="0.2032" layer="16"/>
+<wire x1="7" y1="13" x2="9.5" y2="10.5" width="0.2032" layer="16"/>
+<wire x1="5" y1="13" x2="7" y2="13" width="0.2032" layer="16"/>
+<wire x1="2" y1="10" x2="5" y2="13" width="0.2032" layer="16"/>
+<wire x1="10.5" y1="7.5" x2="10.8936" y2="7.5768" width="0.2032" layer="1"/>
+<wire x1="2" y1="10" x2="2" y2="9.96" width="0.2032" layer="16"/>
+<via x="9.5" y="7.5" extent="1-16" drill="0.35"/>
 </signal>
 <signal name="VR">
 <contactref element="SLAVECTRL" pad="1"/>
 <contactref element="C1" pad="1"/>
-<wire x1="5.2936" y1="12.6568" x2="5.0682" y2="15.367" width="0" layer="19" extent="1-1"/>
+<wire x1="5.5" y1="15" x2="5.5" y2="12.5" width="0.2032" layer="1"/>
+<wire x1="5.5" y1="12.5" x2="5.2936" y2="12.6568" width="0.2032" layer="1"/>
+<wire x1="5.5" y1="15" x2="5.0682" y2="15.367" width="0.2032" layer="1"/>
 </signal>
 <signal name="VCC">
 <contactref element="D1" pad="A"/>

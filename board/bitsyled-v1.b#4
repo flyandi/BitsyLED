@@ -162,7 +162,7 @@
 <wire x1="17" y1="17" x2="0" y2="17" width="0" layer="20"/>
 <wire x1="0" y1="17" x2="0" y2="0" width="0" layer="20"/>
 <text x="13.2842" y="15.2908" size="0.8128" layer="22" rot="MR0">FLYANDI.NET</text>
-<text x="13.2588" y="14.1986" size="0.8" layer="22" rot="MR0">BitsyLED</text>
+<text x="13.2842" y="13.4112" size="1.3" layer="22" rot="MR0">BitsyLED</text>
 <text x="4.4958" y="16.1036" size="1" layer="22" rot="MR270">DT 5V GND</text>
 <text x="4.5466" y="8.128" size="1" layer="22" rot="MR270">DT 5V GND</text>
 <text x="13.4112" y="7.9248" size="1" layer="22" rot="MR270">DT 5V GND</text>

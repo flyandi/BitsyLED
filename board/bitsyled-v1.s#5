@@ -3413,8 +3413,8 @@ Thru-hole RA Female Mini-B USB Connector 4UConnector: 18732&lt;/p&gt;
 <instance part="LED1" gate="G$1" x="-17.78" y="45.72"/>
 <instance part="LED2" gate="G$1" x="-17.78" y="63.5"/>
 <instance part="LED0" gate="G$1" x="-17.78" y="81.28"/>
-<instance part="C1" gate="G$1" x="20.32" y="63.5"/>
-<instance part="D1" gate="G$1" x="15.24" y="76.2"/>
+<instance part="C1" gate="G$1" x="10.16" y="68.58"/>
+<instance part="D1" gate="G$1" x="5.08" y="76.2"/>
 <instance part="CN1" gate="G$1" x="17.78" y="22.86"/>
 </instances>
 <busses>
@@ -3435,13 +3435,9 @@ Thru-hole RA Female Mini-B USB Connector 4UConnector: 18732&lt;/p&gt;
 </net>
 <net name="GND" class="0">
 <segment>
-<pinref part="SLAVECTRL" gate="G$1" pin="GND"/>
-<wire x1="25.4" y1="50.8" x2="20.32" y2="50.8" width="0.1524" layer="91"/>
-<label x="17.78" y="50.8" size="1.778" layer="95" rot="R180" xref="yes"/>
+<label x="10.16" y="60.96" size="1.778" layer="95" rot="R180" xref="yes"/>
 <pinref part="C1" gate="G$1" pin="2"/>
-<wire x1="20.32" y1="50.8" x2="17.78" y2="50.8" width="0.1524" layer="91"/>
-<wire x1="20.32" y1="58.42" x2="20.32" y2="50.8" width="0.1524" layer="91"/>
-<junction x="20.32" y="50.8"/>
+<wire x1="10.16" y1="63.5" x2="10.16" y2="60.96" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="PRG" gate="G$1" pin="T1"/>
@@ -3468,6 +3464,11 @@ Thru-hole RA Female Mini-B USB Connector 4UConnector: 18732&lt;/p&gt;
 <junction x="-35.56" y="24.13"/>
 <label x="-35.56" y="93.98" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
+<segment>
+<pinref part="SLAVECTRL" gate="G$1" pin="GND"/>
+<wire x1="25.4" y1="50.8" x2="25.4" y2="45.72" width="0.1524" layer="91"/>
+<label x="25.4" y="45.72" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
 </net>
 <net name="5V" class="0">
 <segment>
@@ -3492,13 +3493,6 @@ Thru-hole RA Female Mini-B USB Connector 4UConnector: 18732&lt;/p&gt;
 <wire x1="-25.4" y1="27.94" x2="-39.37" y2="27.94" width="0.1524" layer="91"/>
 <junction x="-39.37" y="27.94"/>
 <label x="-39.37" y="17.78" size="1.778" layer="95" xref="yes"/>
-</segment>
-<segment>
-<wire x1="12.7" y1="73.66" x2="5.08" y2="73.66" width="0.1524" layer="91"/>
-<wire x1="5.08" y1="73.66" x2="5.08" y2="78.74" width="0.1524" layer="91"/>
-<label x="5.08" y="78.74" size="1.778" layer="95" rot="R90" xref="yes"/>
-<pinref part="D1" gate="G$1" pin="A"/>
-<wire x1="12.7" y1="73.66" x2="12.7" y2="76.2" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SCL" class="0">
@@ -3591,25 +3585,6 @@ Thru-hole RA Female Mini-B USB Connector 4UConnector: 18732&lt;/p&gt;
 <label x="-27.94" y="67.31" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="N$1" class="0">
-<segment>
-<pinref part="SLAVECTRL" gate="G$1" pin="VCC"/>
-<wire x1="17.78" y1="73.66" x2="20.32" y2="73.66" width="0.1524" layer="91"/>
-<wire x1="20.32" y1="73.66" x2="25.4" y2="73.66" width="0.1524" layer="91"/>
-<wire x1="25.4" y1="73.66" x2="25.4" y2="81.28" width="0.1524" layer="91"/>
-<pinref part="C1" gate="G$1" pin="1"/>
-<wire x1="20.32" y1="66.04" x2="20.32" y2="73.66" width="0.1524" layer="91"/>
-<junction x="20.32" y="73.66"/>
-<pinref part="D1" gate="G$1" pin="C"/>
-<wire x1="17.78" y1="76.2" x2="17.78" y2="73.66" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$2" class="0">
-<segment>
-<pinref part="CN1" gate="G$1" pin="VBUS"/>
-<wire x1="27.94" y1="27.94" x2="43.18" y2="27.94" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="N$3" class="0">
 <segment>
 <pinref part="CN1" gate="G$1" pin="D+"/>
@@ -3632,6 +3607,32 @@ Thru-hole RA Female Mini-B USB Connector 4UConnector: 18732&lt;/p&gt;
 <segment>
 <pinref part="CN1" gate="G$1" pin="GND"/>
 <wire x1="27.94" y1="17.78" x2="43.18" y2="17.78" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="VR" class="0">
+<segment>
+<pinref part="SLAVECTRL" gate="G$1" pin="VCC"/>
+<wire x1="25.4" y1="81.28" x2="25.4" y2="86.36" width="0.1524" layer="91"/>
+<label x="25.4" y="86.36" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<wire x1="7.62" y1="76.2" x2="10.16" y2="76.2" width="0.1524" layer="91"/>
+<wire x1="10.16" y1="76.2" x2="17.78" y2="76.2" width="0.1524" layer="91"/>
+<pinref part="C1" gate="G$1" pin="1"/>
+<wire x1="10.16" y1="71.12" x2="10.16" y2="76.2" width="0.1524" layer="91"/>
+<junction x="10.16" y="76.2"/>
+<label x="17.78" y="76.2" size="1.778" layer="95" rot="MR180" xref="yes"/>
+</segment>
+</net>
+<net name="VCC" class="0">
+<segment>
+<pinref part="D1" gate="G$1" pin="A"/>
+<wire x1="2.54" y1="76.2" x2="0" y2="76.2" width="0.1524" layer="91"/>
+<label x="0" y="76.2" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="CN1" gate="G$1" pin="VBUS"/>
+<wire x1="27.94" y1="27.94" x2="43.18" y2="27.94" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

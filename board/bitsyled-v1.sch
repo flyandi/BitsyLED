@@ -3074,7 +3074,7 @@ Metric Code Size 5664</description>
 <instance part="RIGHT" gate="G$1" x="-17.78" y="63.5"/>
 <instance part="OTHER" gate="G$1" x="-17.78" y="81.28"/>
 <instance part="C1" gate="G$1" x="10.16" y="68.58"/>
-<instance part="D1" gate="G$1" x="5.08" y="76.2"/>
+<instance part="D1" gate="G$1" x="2.54" y="83.82"/>
 </instances>
 <busses>
 </busses>
@@ -3152,6 +3152,11 @@ Metric Code Size 5664</description>
 <wire x1="-25.4" y1="27.94" x2="-39.37" y2="27.94" width="0.1524" layer="91"/>
 <junction x="-39.37" y="27.94"/>
 <label x="-39.37" y="17.78" size="1.778" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="D1" gate="G$1" pin="A"/>
+<wire x1="0" y1="83.82" x2="0" y2="76.2" width="0.1524" layer="91"/>
+<label x="0" y="76.2" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="SCL" class="0">
@@ -3244,16 +3249,6 @@ Metric Code Size 5664</description>
 <label x="-27.94" y="67.31" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="N$3" class="0">
-<segment>
-<wire x1="27.94" y1="25.4" x2="43.18" y2="25.4" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$6" class="0">
-<segment>
-<wire x1="27.94" y1="17.78" x2="43.18" y2="17.78" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="VR" class="0">
 <segment>
 <pinref part="SLAVECTRL" gate="G$1" pin="VCC"/>
@@ -3267,13 +3262,9 @@ Metric Code Size 5664</description>
 <wire x1="10.16" y1="71.12" x2="10.16" y2="76.2" width="0.1524" layer="91"/>
 <junction x="10.16" y="76.2"/>
 <label x="17.78" y="76.2" size="1.778" layer="95" rot="MR180" xref="yes"/>
-</segment>
-</net>
-<net name="VCC" class="0">
-<segment>
-<pinref part="D1" gate="G$1" pin="A"/>
-<wire x1="2.54" y1="76.2" x2="0" y2="76.2" width="0.1524" layer="91"/>
-<label x="0" y="76.2" size="1.778" layer="95" rot="R180" xref="yes"/>
+<pinref part="D1" gate="G$1" pin="C"/>
+<wire x1="5.08" y1="83.82" x2="7.62" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="83.82" x2="7.62" y2="76.2" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

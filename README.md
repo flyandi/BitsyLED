@@ -75,12 +75,9 @@ Right now I don't offer a complete build of the board however you can order your
 https://oshpark.com/shared_projects/AeP6Ik4a
 
 
+## Installation
 
-# Installation
-
-Follow the installation notes for installing an unpacked Chrome application.
-
-You will find the latest release in the release tab.
+Please download the latest binary from the releases tab or clone this project and build your own version. 
 
 
 ## License
