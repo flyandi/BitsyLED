@@ -9,6 +9,8 @@
 
 ---
 
+Click below for a video:
+
 [![BitsyLED Preview](https://img.youtube.com/vi/e7a4mR2vg3Y/0.jpg)](https://www.youtube.com/watch?v=e7a4mR2vg3Y)
 
 
