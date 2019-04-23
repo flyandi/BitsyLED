@@ -7,7 +7,7 @@
     "url": "http://flyandi.net/"
   },
   "version": "0.2.0",
-  "license": "GNU",
+  "license": "GPL-3.0-or-later",
   "build": {
     "appId": "net.flyandi.bitsyled",
     "productName": "BitsyLED Configurator",
