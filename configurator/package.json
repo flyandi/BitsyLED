@@ -1,19 +1,32 @@
 {
   "name": "BitsyLED",
   "description": "BitsyLED Configurator",
-  "author": "Andy Schwarz (flyandi.net)",
-  "version": "0.1.0",
+  "author": {
+    "name": "Andy Schwarz",
+    "email": "flyandi@yahoo.com",
+    "url": "http://flyandi.net/"
+  },
+  "version": "0.2",
   "license": "GNU",
   "build": {
     "appId": "net.flyandi.bitsyled",
     "productName": "BitsyLED Configurator",
-    "copyright": "2018 FLYANDI.NET GNU license",
+    "copyright": "2019 FLYANDI.NET GNU license",
     "mac": {
-      "icon": "app/icons/mac/icons.icns",
+      "icon": "app/icons/icons.icns",
       "category": "public.app-category.productivity"
     },
     "win": {
-      "icon": "app/icons/win/icon.icns"
+      "icon": "app/icons/icon.ico",
+      "target": [
+        "nsis"
+      ]
+    },
+    "linux": {
+      "target": [
+        "zip"
+      ],
+      "icon": "app/icons/512x512.png"
     },
     "directories": {
       "buildResources": "app"
@@ -46,16 +59,11 @@
   "homepage": ".",
   "main": "public/app.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "dev": "concurrently \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"",
+    "start": "concurrently \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"",
     "prod": "build -c.extraMetadata.main=build/app.js --mac --win --linux",
-    "release": "build -c.extraMetadata.main=build/app. --mac --win --linux --publish=always",
-    "prodx": "build -c.extraMetadata.main=build/app.js --mac",
     "preprod": "npm run build",
-    "prerelease": "npm run build",
+    "dist": "build -c.extraMetadata.main=build/app.js --mac --win --linux --draft=false --publish=onTagOrDraft",
+    "predist": "npm run build",
     "dep": "electron-builder install-app-deps"
   },
   "devDependencies": {
