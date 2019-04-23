@@ -13,6 +13,7 @@ notifications:
   email: false
 script:
   - cd configurator/
+  - yarn
   - yarn dist
 deploy:
   provider: releases
