@@ -6,12 +6,15 @@
     "email": "flyandi@yahoo.com",
     "url": "http://flyandi.net/"
   },
-  "version": "0.2",
+  "version": "0.2.0",
   "license": "GNU",
   "build": {
     "appId": "net.flyandi.bitsyled",
     "productName": "BitsyLED Configurator",
     "copyright": "2019 FLYANDI.NET GNU license",
+    "dmg": {
+      "backgroundColor": "#F1F1F1"
+    },
     "mac": {
       "icon": "app/icons/icons.icns",
       "category": "public.app-category.productivity"
@@ -60,10 +63,12 @@
   "main": "public/app.js",
   "scripts": {
     "start": "concurrently \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
     "prod": "build -c.extraMetadata.main=build/app.js --mac --win --linux",
-    "preprod": "npm run build",
-    "dist": "build -c.extraMetadata.main=build/app.js --mac --win --linux --draft=false --publish=onTagOrDraft",
-    "predist": "npm run build",
+    "dist": "build -c.extraMetadata.main=build/app.js --mac --win --linux --publish=onTagOrDraft",
+    "preprod": "react-scripts build",
+    "predist": "react-scripts build",
     "dep": "electron-builder install-app-deps"
   },
   "devDependencies": {
