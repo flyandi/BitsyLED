@@ -105,7 +105,6 @@ class _Color extends Component {
      * @param event
      */
     handleChecked = name => event => {
-        console.log(event.target.checked);
         this.setState({
             [name]: event.target.checked,
         }, () => this.update());

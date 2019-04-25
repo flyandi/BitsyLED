@@ -9,13 +9,7 @@ const Storage = window.require("electron").remote.require("electron-json-storage
 /**
  * @type {string}
  */
-const KEY = "ITEM";
-
-/**
- * @type {string}
- */
 const STORAGE = 'bitsyled.settings.json';
-
 
 /**
  * @type {{}}
@@ -41,30 +35,20 @@ export const INITIAL = {
     serialPayload: false,
     serialBoardStatus: false,
     serialChannelValue: false,
-    /*
-        [uuid()]: {
-            name: 'Quadcopter XL',
-            layout: Defaults.Layout,
-            input: Defaults.Input,
-            resolution: Defaults.Resolution,
-            leds: Defaults.Leds,
-            ranges: {
-                [uuid()]: {
-                    min: 1000,
-                    max: 1200,
-                    name: 'Navigation',
-                    leds: {}
-                },
-                [uuid()]: {
-                    min: 1800,
-                    max: 1900,
-                    name: 'Strobe',
-                    leds: {}
-                }
-            }
-        }
-    },*/
 }
+
+/**
+ * @type {{}}
+ */
+const resetState = {
+    serialPayload: false,
+    serialBoardStatus: false,
+    serialChannelValue: false,
+    selectedRange: false,
+    editRange: false,
+    selectedConfiguration: false,
+    serialPorts: [],
+};
 
 /**
  * @state
@@ -82,8 +66,7 @@ window.__SUBSCRIBERS = {};
  * @param data
  */
 const persist = () => {
-    console.log("SAVE", window.__STATE);
-    Storage.set(STORAGE, window.__STATE, err => {if(err) throw(err)});
+    Storage.set(STORAGE, {...window.__STATE, ...resetState}, err => {if(err) throw(err)});
 }
 
 /**
@@ -91,15 +74,7 @@ const persist = () => {
  * @param strategy
  */
 export const hydrateState = (state, strategy = false) => {
-    window.__STATE = strategy ? {...window.__STATE, ...state, ...{
-        serialPayload: false,
-        serialBoardStatus: false,
-        serialChannelValue: false,
-        selectedRange: false,
-        editRange: false,
-        selectedConfiguration: false,
-        serialPorts: [],
-    }} : deepMerge(window.__STATE, state);
+    window.__STATE = strategy ? {...window.__STATE, ...state, ...resetState} : deepMerge(window.__STATE, state);
 }
 
 /**
@@ -107,15 +82,11 @@ export const hydrateState = (state, strategy = false) => {
  * @returns {*}
  */
 export const hydrate = (empty = false) => {
-
-    console.log(Storage.getDataPath());
-
     return new Promise(resolve => {
         try {
             empty ? resolve(hydrateState({}, true)) : (
                 Storage.get(STORAGE, (err, data) => {
                     if(err) return resolve({});
-                    console.log("LOAD", data);
                     return resolve(hydrateState(data, true))
                 })
             )
@@ -124,7 +95,6 @@ export const hydrate = (empty = false) => {
         }
     })
 }
-
 
 /**
  * @param state

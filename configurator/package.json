@@ -6,7 +6,7 @@
     "email": "flyandi@yahoo.com",
     "url": "http://flyandi.net/"
   },
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "GPL-3.0-or-later",
   "build": {
     "appId": "net.flyandi.bitsyled",
@@ -48,6 +48,7 @@
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
     "cross-env": "^5.2.0",
+    "electron": "^4.1.4",
     "electron-is-dev": "^1.1.0",
     "electron-json-storage": "^4.1.6",
     "electron-updater": "^4.0.6",
@@ -62,19 +63,20 @@
   "homepage": ".",
   "main": "public/app.js",
   "scripts": {
-    "start": "concurrently \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"",
+    "dev": "concurrently \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "prod": "build -c.extraMetadata.main=build/app.js --mac --win --linux",
     "dist": "build -c.extraMetadata.main=build/app.js --mac --win --linux --publish=onTagOrDraft",
-    "preprod": "react-scripts build",
-    "predist": "react-scripts build",
+    "preprod": "npm run build",
+    "predist": "npm run build",
     "dep": "electron-builder install-app-deps"
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
-    "electron": "^4.1.4",
     "electron-builder": "^20.39.0",
+    "electron-rebuild": "^1.8.4",
     "typescript": "^3.4.3",
     "wait-on": "^3.2.0"
   },

@@ -1,7 +1,15 @@
+/**
+ * @imports
+ */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Loader from './Loader';
-const { autoUpdater } = require("electron-updater");
+
+/**
+ * @native-imports
+ */
+const { autoUpdater }  = window.require("electron").remote.require("electron-updater");
 
 autoUpdater.checkForUpdatesAndNotify();
+
 ReactDOM.render(<Loader />, document.getElementById('root'));
