@@ -48,6 +48,7 @@ The configurator and firmware are still under development but some parts may cha
 - Add presets (Pending)
 - Add serial debug output (In Progress)
 - More documentation (getting there)
+- Upload firmware directly from the configurator (Pending)
 
 
 ## Firmware
@@ -134,6 +135,17 @@ Also if enabled, BitsyLED will use the internal LED on pin `13` as status LED.
 ## Installation
 
 Please download the latest binary from the releases tab or clone this project and build your own version. 
+
+For firmware, you will need the Arduino IDE (easiest). Clone this project and ipen the `bitsyled.ino` in the `firmware` folder. Follow the direction for your board to upload.
+
+For the BitsyLED board you need to install ATTINY board support into your IDE.
+
+
+## Help and Discussion
+
+For support, help or discussion please visit my official thread on RCGroups: 
+
+https://www.rcgroups.com/forums/showthread.php?3289805-BitsyLED
 
 
 ## License
