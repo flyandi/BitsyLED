@@ -20,9 +20,6 @@ BitsyLED is a minimal firmware to drive RGB LED's (WS2811, WS2812, NeoPixels, et
 
 BitsyLED is divided into two parts: The Firmware and the Configurator. The firmware can be run on most Arduino compatible boards and I also created a dedicated board (see below) that is targetted primarily for RC purposes.
 
-The Configurator is designed for Chrome however I learned too late that Google has dropped support for Chrome Apps. You can still install the Configurator as unpacked extension and use it that way.
-
-
 ## Features
 
 By default the firmware is set to the following settings which is the maximum amount supported by the ATTINY. The firmware can be reconfigured through the file `config.h`.
