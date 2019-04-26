@@ -13,8 +13,8 @@
 
 
 // Target board
-//#define BOARD_BITSYLED
-#define BOARD_ARDUINO
+#define BOARD_BITSYLED
+//#define BOARD_ARDUINO
 //#define BOARD_ESP
 
 // Firmware flags
