@@ -18,7 +18,6 @@ import {uuid} from "../../lib";
 import {Layouts, Inputs, Resolutions, Defaults, Bauds, Boards} from "../../constants";
 
 
-
 /**
  * Styles
  * @param theme

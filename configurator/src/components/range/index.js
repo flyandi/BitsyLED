@@ -10,10 +10,11 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import {subscribe, setState, getState} from "../../data";
-import {Defaults, Inputs, Events} from "../../constants";
+import {Defaults, Inputs, Events, Times} from "../../constants";
 import Menu from '../menu';
 import {uuid} from "../../lib";
 import {updateRange, removeRange, addRange} from "../../data/actions";
+import Dropdown from '../dropdown';
 
 /**
  * @type {number}
@@ -167,14 +168,40 @@ class _Range extends Component {
             >
                 <Grid item className={[classes.program, channelSelected ? classes.channelSelected : ''].join(' ')} sm={3}>
                     <Grid container alignItems="center">
-                        <Grid item lg>
-                            <Typography align="center" variant="body1" color="textSecondary" className={classes.programText}>
+                        <Grid item sm={12}>
+                            <Typography align="center" variant="body1" color="textSecondary">
                                 {name}
                             </Typography>
                         </Grid>
                     </Grid>
                 </Grid>
                 <Grid item sm={7} className={classes.range}>
+                    {!input.always ? null : (
+                        <Grid container>
+                            <Grid item>
+                                <Typography align="center" variant="body1">
+                                    Always On
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                    )}
+
+                    {!input.timed ? null : (
+                        <Grid container>
+                            <Grid item>
+                                <Dropdown
+                                    variant="outlined"
+                                    fullWidth
+                                    name="times"
+                                    label={"Time"}
+                                    items={Times}
+                                    value={min}
+                                    onChange={min => this.handleChange({min})}
+                                />
+                            </Grid>
+                        </Grid>
+                    )}
+
                     {!input.range ? null : (
                         <Slider.Range
                             dots

@@ -6,7 +6,7 @@
     "email": "flyandi@yahoo.com",
     "url": "http://flyandi.net/"
   },
-  "version": "0.3.0",
+  "version": "0.6.0",
   "license": "GPL-3.0-or-later",
   "build": {
     "appId": "net.flyandi.bitsyled",
@@ -67,14 +67,14 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "prod": "build -c.extraMetadata.main=build/app.js --mac --win --linux",
-    "dist": "build -c.extraMetadata.main=build/app.js --mac --win --linux --publish=onTagOrDraft",
+    "dist": "build -c.extraMetadata.main=build/app.js --mac --win --linux --publish always",
     "preprod": "npm run build",
     "predist": "npm run build",
     "dep": "electron-builder install-app-deps"
   },
   "devDependencies": {
-    "electron": "^4.1.4",
     "concurrently": "^4.1.0",
+    "electron": "^4.1.4",
     "electron-builder": "^20.39.0",
     "electron-rebuild": "^1.8.4",
     "typescript": "^3.4.3",

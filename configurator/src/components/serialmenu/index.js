@@ -186,7 +186,7 @@ class _SerialMenu extends Component {
                 const cmd = new Uint8Array([sc.cmd]);
                 if (cmd[0] == data[0]) {
                     if(sc.expected == 0) {
-                        sc.invoke(true, this);
+                        sc.invoke && sc.invoke(true, this);
                     } else {
                         this.serialBuffer = [];
                         this.serialCommand = sc;

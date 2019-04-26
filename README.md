@@ -27,7 +27,7 @@ The Configurator is designed for Chrome however I learned too late that Google h
 
 By default the firmware is set to the following settings which is the maximum amount supported by the ATTINY. The firmware can be reconfigured through the file `config.h`.
 
-* Up to 5 individual ranges, selectable through either an RC PWM signal, Analog signal, Time (Coming soon) or always on.
+* Up to 5 individual ranges, selectable through either an RC PWM signal, Analog signal, Time based or always on.
 
 * 3 LED data strands per range (Left, Right, Other)
 
@@ -44,20 +44,28 @@ By default the firmware is set to the following settings which is the maximum am
 
 The configurator and firmware are still under development but some parts may change as I have time to complete the following objectives:
 
-- Move Configurator to Electron (In Progress)
 - Introduce curves for custom light patterns (Pending)
 - Add presets (Pending)
 - Add serial debug output (In Progress)
-- More documentation
+- More documentation (getting there)
 
 
 ## Firmware
 
 The firmware is designed for Arduino compatible boards. I also created a dedicated board called the BitsyLED board.
 
-The default firmware configuration is setup for the BitsyLED board which sports a 16bit ATTINY84 that supports up to 5 selectable configurations. Each configuration can have 3 data strands with up to 10 LED's per strand. 
+The default firmware configuration is setup for the BitsyLED board which sports a 8bit ATTINY84 that supports up to 5 selectable configurations. Each configuration can have 3 data strands with up to 10 LED's per strand. 
 
-The firmware can be reconfigured as needed.
+The firmware can be reconfigured as needed via the `config.h` file. 
+
+
+### Board Support
+
+| Board | Ranges | Strands/Range | LED's/Strand | Possible Combinations | Config |
+| ----  | ------ | ------------- | ------------ | --------------------- | ------- | 
+| BitsyLED | 5 | 3 | 10 | 150 | `BOARD_BITSYLED` in `config.h` |
+| Arduino | 6 | 3 | 25 | 450 | `BOARD_ARDUINO` in `config.h` |
+
 
 ## Configurator
 
@@ -72,7 +80,10 @@ The configurator is available currently only as unpacked Chrome extension that n
 
 ## Hardware
 
-Right now I don't offer a complete build of the BitsyLED board however you can order your own copy on Oshpark:
+Right now I don't offer a complete build of the BitsyLED board however you can order your own copy on Oshpark. 
+
+Alternatively the firmware runs perfectly fine on any Arduino compatible board with the caveat that the firmware and configurator settings are statically aligned to the Arduino Pro Mini with a maximum of 1024bytes of EEPROM.
+
 
 ### v1.1 
 
@@ -100,6 +111,24 @@ You will need an USBASP to upload the Firmware and an serial capable board (like
 ### v2.0
 
 Working on a new board with USB support. Stay tuned.
+
+
+### Arduino
+
+As described above, the Arduino configuraton is statically aligned for the Arduino Pro Mini series which has by default an EEPROM size of `1024 bytes`.
+
+However that amount of storage still results in up to `6` selectable ranges, each with `3` strands and up to `25` led's per strand.
+
+The following pin map is being used for BitsyLED:
+
+| Pin | Purpose | 
+| ----  | ------ |
+| 9 | Input for RC PWM or Analog |
+| 10 | Left Strand Data Channel |
+| 11 | Right Strand Data Channel |
+| 12 | Other Strand Data Channel |
+
+Also if enabled, BitsyLED will use the internal LED on pin `13` as status LED.
 
 
 ## Installation

@@ -42,7 +42,7 @@
 #include "bitsyled_ws2812.h"
 
 // @version
-#define VERSION 100
+#define VERSION 101
 
 
 // @serial configuration
@@ -80,14 +80,34 @@
 uint8_t serial_action = false;
 uint8_t range_mode = MODE_RC;
 cRGB color;
-SoftwareSerial serial(SERIAL_RX_PIN, SERIAL_TX_PIN);
+#ifdef USE_SOFT_SERIAL
+  SoftwareSerial serial(SERIAL_RX_PIN, SERIAL_TX_PIN);
+#else
+  HardwareSerial &serial = Serial;
+#endif;
 
 // @strands
-WS2812 strands_a[NUM_STRANDS] = {
-  WS2812(2), // left
-  WS2812(3), // right
-  WS2812(1)  // other
-};
+// @todo because of memory limit, I will keep this static until a future rewrite
+#ifdef BOARD_BITSYLED
+  WS2812 strands_a[NUM_STRANDS] = {
+    WS2812(2), // left
+    WS2812(3), // right
+    #ifdef ENABLE_LOCAL_DEV 
+      WS2812(10)  // other
+    #else
+      WS2812(1)   // other
+    #endif
+  };
+#endif
+
+#ifdef BOARD_ARDUINO
+  WS2812 strands_a[NUM_STRANDS] = {
+    WS2812(10), // left
+    WS2812(11), // right
+    WS2812(12)  // other
+  };
+#endif
+
 
 
 // @header
@@ -108,7 +128,9 @@ uint32_t timers_t[NUM_SPEEDS];
 uint16_t timers_p[NUM_SPEEDS];
 uint8_t timers_s = 0;
 
-
+// @timers for MODE_TIMER
+uint32_t timers_tt = 0;
+uint8_t timers_tr = 0;
 
 // @curves
 uint8_t pulse_curve[PATTERN_CURVE_STEPS] = {0, 1, 2, 3, 4};
@@ -281,7 +303,11 @@ void mux_ranges() {
 
   for (r = 0; r < NUM_RANGES; r++) {
 
-    b = (channel >= (ranges_l[r][0] * 10) && channel <= (ranges_l[r][1] * 10));
+    if(range_mode == MODE_TIMER) {
+      b = r == timers_tr;
+    } else {
+      b = (range_mode == MODE_ALWAYS) || (channel >= (ranges_l[r][0] * 10) && channel <= (ranges_l[r][1] * 10));
+    }
     if(b) range_a++;
 
     // mux range
@@ -315,8 +341,8 @@ void mux_ranges() {
 void identify_strand() {
   clear_all();
   color.r = 255;
-  color.g = 128;
-  color.b = 128;
+  color.g = 0;
+  color.b = 0;
   for(uint8_t n = 0; n < NUM_STRANDS; n++) {
     strands_a[n].set_color(0, color);
     strands_a[n].sync();
@@ -403,19 +429,29 @@ void read_serial() {
 */
 void read_channel() {
 
-  uint16_t c = 0;
+  if (range_mode == MODE_TIMER) {
+    batow ba;
+    ba.a[0] = ranges_l[timers_tr][0];
+    ba.a[1] = ranges_l[timers_tr][1];
+    if(millis() - (ba.w * 1000) > timers_tt) {
+      timers_tt = millis();
+      timers_tr++;
+      if(timers_tr >= NUM_RANGES) timers_tr = 0;
+      return mux_ranges();
+    }
+  }
 
-  if(range_mode == MODE_ALWAYS) {
-    c = 500; 
-  } else if (range_mode == MODE_ANALOG) {
+  uint16_t c = 0;
+  
+  if (range_mode == MODE_ANALOG) {
     c = analogRead(PIN_INPUT);
   } else if (range_mode == MODE_RC) {
     c = pulseIn(PIN_INPUT, HIGH, 25000);
-  }
+  } 
   
-  if (c + SAFE_CHANNEL > channel || c - SAFE_CHANNEL < channel) {
+  if ((range_mode == MODE_ALWAYS) || (c + SAFE_CHANNEL > channel || c - SAFE_CHANNEL < channel)) {
     channel = c;
-    mux_ranges();
+    mux_ranges(); 
   }
 }
 
@@ -466,6 +502,10 @@ void setup() {
   pinMode(PIN_INPUT, INPUT);
   serial.begin(SERIAL_BAUD_RATE);
   recover();
+
+  #ifdef USE_STATUS_LED
+    pinMode(PIN_STATUS_LED, OUTPUT);
+  #endif;
 }
 
 /**
@@ -474,7 +514,7 @@ void setup() {
 void loop() {
 
   uint8_t n, l;
-
+  
   if (serial.available()) {
     read_serial();
   } else  {
@@ -508,6 +548,11 @@ void loop() {
       send_channel();
       channel_a = channel;
     }
+    #endif
+
+    // status led
+    #ifdef USE_STATUS_LED
+      digitalWrite(PIN_STATUS_LED, bitRead(timers_s, 6));
     #endif
   }
 

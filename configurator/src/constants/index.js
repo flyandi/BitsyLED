@@ -116,6 +116,48 @@ export const Speeds = {
     },
 }
 
+/**
+ * @type {{}}
+ */
+export const Times = {
+    1: {
+        label: '1 second',
+        value: 1,
+    },
+    5: {
+        label: '5 seconds',
+        value: 5,
+    },
+    10: {
+        label: '10 seconds',
+        value: 10,
+    },
+    15: {
+        label: '15 seconds',
+        value: 15,
+    },
+    30: {
+        label: '30 seconds',
+        value: 30,
+    },
+    45: {
+        label: '45 seconds',
+        value: 15,
+    },
+    60: {
+        label: '1 minute',
+        value: 60,
+    },
+    120: {
+        label: '2 minutes',
+        value: 120,
+    },
+    300: {
+        label: '5 minutes',
+        value: 300,
+    },
+}
+
 
 /**
  * Presets
@@ -255,12 +297,14 @@ export const Inputs = {
         value: 'tb',
         label: 'Time Based',
         range: false,
+        timed: true,
     },
     aw: {
         fn: 3,
         value: 'aw',
         label: 'Always',
         range: false,
+        always: true,
         min: 500,
         max: 500
     },
@@ -316,9 +360,9 @@ export const Boards = {
     arduino: {
         fn: 4,
         value: 'arduino',
-        label: 'Generic Arduino',
-        leds: 50,
-        ranges: 10
+        label: 'Arduino',
+        leds: 25,
+        ranges: 6
     },
 }
 

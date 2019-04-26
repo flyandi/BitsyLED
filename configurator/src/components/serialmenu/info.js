@@ -54,9 +54,11 @@ class _InfoDialog extends Component {
             }
         });
 
+        const versionString = [Math.ceil(version / 1000), Math.ceil(version % 100)].join('.')
+
         let items = [
             {label: 'Board', text: board ? board.label : 'Unknown Board'},
-            {label: 'Firmware Version', text: [Math.ceil(version / 100), Math.ceil(version % 100)].join('.')},
+            {label: 'Firmware Version', text: versionString},
             {label: 'Supported Ranges', text: [info.supportedNumRanges || 0].join(' ')},
             {label: 'Supported Strands per Range', text: [info.supportedNumStrands || 0].join(' ')},
             {label: 'Supported Leds per Strand', text: [info.supportedNumLeds || 0].join(' ')},

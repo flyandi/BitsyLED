@@ -90,11 +90,6 @@ class _MainMenu extends Component {
                 <Grid item>
                     <Grid container alignItems="center">
                         <Grid item>
-                            <Button variant="outlined" color="primary">
-                                Get Board
-                            </Button>
-                        </Grid>
-                        <Grid item>
                             <img src={FlyAndiLogo} className={classes.logo} />
                         </Grid>
                     </Grid>
@@ -110,3 +105,13 @@ class _MainMenu extends Component {
  * @export
  */
 export default withStyles(styles)(_MainMenu);
+
+
+/**
+ @saveforlater
+<Grid item>
+    <Button variant="outlined" color="primary">
+        Get Board
+    </Button>
+</Grid>
+*/

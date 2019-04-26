@@ -212,11 +212,17 @@ led =   <r, g, b, mirror, pattern, speed>
     // ..ranges
     r.forEach(range => {
         const {min, max} = {min: 0, max: 0, ...mode, ...range};
-        result = [...result, Math.floor(min/10) || 0, Math.ceil(max/10) || 0]
+
+        if(mode.timed) {
+            result = [...result, ...intByte(min)]; // timed uses the min as seconds as int16
+        } else {
+            result = [...result, Math.floor(min / 10) || 0, Math.ceil(max / 10) || 0];
+        }
     });
 
     // ..strands
     // @todo bring this to life and reflect in firmware
+    //   -> I will leave it in here for future upgrades - but for now I decided to go static mapping.
     ObjectArray(Strands).forEach(strand => result = [...result, strand.pin]);
 
     // ..leds

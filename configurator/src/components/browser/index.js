@@ -28,6 +28,11 @@ import Settings from './settings';
 
 
 /**
+ * @native-imports
+ */
+const shell = window.require("electron").shell;
+
+/**
  * Styles
  * @param theme
  * @returns {{}}
@@ -99,6 +104,18 @@ class _Browser extends Component {
     handleChange = (event, tab) => {
         this.setState({ tab });
     };
+
+    /**
+     * @param item
+     */
+    open(item) {
+        if(item.link) {
+            return shell.openExternal(item.link);
+        }
+        if(item.press) {
+            return item.press();
+        }
+    }
 
     /**
      * render
@@ -174,7 +191,7 @@ class _Browser extends Component {
                                     <ListItemText primary={item.label} secondary={item.text}/>
                                     <ListItemSecondaryAction>
                                         {item.button ? (
-                                            <Button onClick={() => window.open(item.link)} variant="outlined"
+                                            <Button onClick={() => this.open(item)} variant="outlined"
                                                     color="primary">{item.button}</Button>
                                         ) : (
                                             <Switch
