@@ -18,7 +18,7 @@ Click below for a video:
 
 BitsyLED is a minimal firmware to drive RGB LED's (WS2811, WS2812, NeoPixels, etc). It's designed for anything RC but also can be used for other projects including Christmas lights, Lego's, or even your real car.
 
-BitsyLED is divided into two parts: The Firmware and the Configurator. The firmware can be run on most Arduino compatible boards and I also created a dedicated board (see below) that is targetted primarily for RC purposes.
+BitsyLED is divided into two parts: The Firmware and the Configurator. The firmware can be run on most Arduino compatible boards and I also created a dedicated board (see below) that is targeted primarily for RC purposes.
 
 ## Features
 
@@ -105,6 +105,15 @@ Follow the connection diagram below how to connect
 <img src="docs/board.png" />
 
 You will need an USBASP to upload the Firmware and an serial capable board (like FTDI adapter) to upload the configuration from the configurator.
+
+### v1.2
+
+https://oshpark.com/shared_projects/GW6rcqF8
+
+I created a new board that is slimmer and has SMD pad's instead of the drill pad's which gives it more flexibility. The board also comes with an status LED.
+
+I have not received my own copy of this, so stay tuned for more info.
+
 
 ### v2.0
 
