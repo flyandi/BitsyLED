@@ -10,7 +10,7 @@
 
   Designed for RC Cars, Multicopters, Airplanes, UGV's and anything in between
 
-  Learn more at http://github.com/flyandi/BitysLED
+  Learn more at http://github.com/flyandi/BitysLED 
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -42,7 +42,7 @@
 #include "bitsyled_ws2812.h"
 
 // @version
-#define VERSION 101
+#define VERSION 102
 
 
 // @serial configuration

@@ -124,6 +124,14 @@ export const Times = {
         label: '1 second',
         value: 1,
     },
+    2: {
+        label: '2 seconds',
+        value: 2,
+    },
+    3: {
+        label: '3 seconds',
+        value: 3,
+    },
     5: {
         label: '5 seconds',
         value: 5,
