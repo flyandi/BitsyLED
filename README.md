@@ -73,7 +73,11 @@ It allows to setup different selectable ranges which can be controlled via an PW
 
 <img src="docs/screen_1.png">
 
-The configurator is available currently only as unpacked Chrome extension that needs to be installed manually. Check the release tab for the files.
+### Installation
+
+The configurator is available as standalone app since Google has dropped support for Chrome Apps. Please download the latest release for your platform from the `releases` tab.
+
+Once installed, the application will automatically updates itself once new versions are released.
 
 
 ## Hardware
