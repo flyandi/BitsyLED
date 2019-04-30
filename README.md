@@ -89,9 +89,13 @@ Alternatively the firmware runs perfectly fine on any Arduino compatible board w
 
 ### v1.1 
 
+<img src="docs/board.png" />
+
 https://oshpark.com/shared_projects/E85sUqFS
 
-Parts needed (DigiKey.com):
+#### Parts
+
+All parts available on DigiKey.com:
 
 - 1x ATTINY84 (Part ATTINY84A-SSURCT-ND) 
 - 1x Capacitor in 805 packaging (587-1304-1-ND) 
@@ -106,17 +110,28 @@ Additionally the board has a top and bottom SMD connector that is used as a dual
 
 Follow the connection diagram below how to connect 
 
-<img src="docs/board.png" />
-
 You will need an USBASP to upload the Firmware and an serial capable board (like FTDI adapter) to upload the configuration from the configurator.
 
-### v1.2
 
-https://oshpark.com/shared_projects/GW6rcqF8
+### v1.2.1
+
+<img src="docs/board-1.2.1-top.png" />
+
+https://oshpark.com/shared_projects/B3IAiNyH
 
 I created a new board that is slimmer and has SMD pad's instead of the drill pad's which gives it more flexibility. The board also comes with an status LED.
 
 I have not received my own copy of this, so stay tuned for more info.
+
+#### Parts
+
+All parts available on DigiKey.com. I changed some components in this version!
+
+- 1x ATTINY84 (Part ATTINY84A-SSURCT-ND) 
+- 1x Capacitor in 805 packaging (587-1304-1-ND) 
+- 1x Diode in SOD-123 packaging (MMSZ5231B-TP)
+- 1x Blue LED in 805 packaging (150080BS75000)
+- 1x Resistor in 805 packaging with value of 140ohms (Part RMCF0805FT140R)
 
 
 ### v2.0
