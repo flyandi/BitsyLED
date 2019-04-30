@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="1.27" unitdist="mm" unit="mm" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="mm"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="no" active="no"/>
@@ -444,6 +444,19 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="-5.08" y1="1.27" x2="-2.54" y2="1.27" width="0.127" layer="21"/>
 <wire x1="-2.54" y1="0" x2="-2.54" y2="1.27" width="0.127" layer="21"/>
 <wire x1="-2.54" y1="1.27" x2="0" y2="1.27" width="0.127" layer="21"/>
+<wire x1="-15.24" y1="2.54" x2="-11.43" y2="2.54" width="0.127" layer="43"/>
+<wire x1="-11.43" y1="2.54" x2="-11.43" y2="1.27" width="0.127" layer="43"/>
+<wire x1="-11.43" y1="1.27" x2="-7.62" y2="1.27" width="0.127" layer="43"/>
+<wire x1="-7.62" y1="1.27" x2="-7.62" y2="2.54" width="0.127" layer="43"/>
+<wire x1="-7.62" y1="2.54" x2="-3.81" y2="2.54" width="0.127" layer="43"/>
+<wire x1="-3.81" y1="2.54" x2="-3.81" y2="1.27" width="0.127" layer="43"/>
+<wire x1="-3.81" y1="1.27" x2="0" y2="1.27" width="0.127" layer="43"/>
+<wire x1="0" y1="1.27" x2="0" y2="-2.54" width="0.127" layer="43"/>
+<wire x1="0" y1="-2.54" x2="-15.24" y2="-2.54" width="0.127" layer="43"/>
+<wire x1="-15.24" y1="-2.54" x2="-15.24" y2="2.54" width="0.127" layer="43"/>
+<rectangle x1="-15.24" y1="-2.54" x2="-11.43" y2="2.54" layer="43"/>
+<rectangle x1="-15.24" y1="-2.54" x2="0" y2="1.27" layer="43"/>
+<rectangle x1="-7.62" y1="1.27" x2="-3.81" y2="2.54" layer="43"/>
 </package>
 <package name="BITSYLED_1X6_RAIL_R">
 <smd name="G0" x="-13.97" y="0" dx="1.6764" dy="1.6764" layer="1" roundness="20"/>
@@ -486,6 +499,19 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="-12.7" y1="-1.27" x2="-12.7" y2="-2.54" width="0.127" layer="21"/>
 <wire x1="-12.7" y1="-2.54" x2="-15.24" y2="-2.54" width="0.127" layer="21"/>
 <wire x1="-15.24" y1="-1.27" x2="-15.24" y2="1.27" width="0.127" layer="21"/>
+<wire x1="-15.24" y1="1.27" x2="-15.24" y2="-3.81" width="0.127" layer="43"/>
+<wire x1="-15.24" y1="-3.81" x2="-12.7" y2="-3.81" width="0.127" layer="43"/>
+<wire x1="-12.7" y1="-3.81" x2="-12.7" y2="-2.54" width="0.127" layer="43"/>
+<wire x1="-12.7" y1="-2.54" x2="-7.62" y2="-2.54" width="0.127" layer="43"/>
+<wire x1="-7.62" y1="-2.54" x2="-7.62" y2="-3.81" width="0.127" layer="43"/>
+<wire x1="-7.62" y1="-3.81" x2="-3.81" y2="-3.81" width="0.127" layer="43"/>
+<wire x1="-3.81" y1="-3.81" x2="-3.81" y2="-2.54" width="0.127" layer="43"/>
+<wire x1="-3.81" y1="-2.54" x2="0" y2="-2.54" width="0.127" layer="43"/>
+<wire x1="0" y1="-2.54" x2="0" y2="1.27" width="0.127" layer="43"/>
+<wire x1="0" y1="1.27" x2="-15.24" y2="1.27" width="0.127" layer="43"/>
+<rectangle x1="-15.24" y1="-2.54" x2="0" y2="1.27" layer="43"/>
+<rectangle x1="-7.62" y1="-3.81" x2="-3.81" y2="-2.54" layer="43"/>
+<rectangle x1="-15.24" y1="-3.81" x2="-12.7" y2="-2.54" layer="43"/>
 </package>
 <package name="BITSYLED_1X6_RAIL_PRG">
 <smd name="G0" x="-13.97" y="-1.27" dx="1.6764" dy="1.6764" layer="16" roundness="20" rot="R180"/>
@@ -525,6 +551,19 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="-12.7" y1="0" x2="-12.7" y2="1.27" width="0.127" layer="22"/>
 <wire x1="-12.7" y1="1.27" x2="-15.24" y2="1.27" width="0.127" layer="22"/>
 <rectangle x1="-5.08" y1="-2.54" x2="0" y2="0" layer="22"/>
+<wire x1="-15.24" y1="1.27" x2="-15.24" y2="-2.54" width="0.127" layer="43"/>
+<wire x1="-15.24" y1="-2.54" x2="0" y2="-2.54" width="0.127" layer="43"/>
+<wire x1="0" y1="-2.54" x2="0" y2="2.54" width="0.127" layer="43"/>
+<wire x1="0" y1="2.54" x2="-2.54" y2="2.54" width="0.127" layer="43"/>
+<wire x1="-2.54" y1="2.54" x2="-2.54" y2="1.27" width="0.127" layer="43"/>
+<wire x1="-2.54" y1="1.27" x2="-5.08" y2="1.27" width="0.127" layer="43"/>
+<wire x1="-5.08" y1="1.27" x2="-5.08" y2="2.54" width="0.127" layer="43"/>
+<wire x1="-5.08" y1="2.54" x2="-10.16" y2="2.54" width="0.127" layer="43"/>
+<wire x1="-10.16" y1="2.54" x2="-10.16" y2="1.27" width="0.127" layer="43"/>
+<wire x1="-10.16" y1="1.27" x2="-15.24" y2="1.27" width="0.127" layer="43"/>
+<rectangle x1="-15.24" y1="-2.54" x2="0" y2="1.27" layer="43"/>
+<rectangle x1="-10.16" y1="1.27" x2="-5.08" y2="2.54" layer="43"/>
+<rectangle x1="-2.54" y1="1.27" x2="0" y2="2.54" layer="43"/>
 </package>
 </packages>
 <symbols>
@@ -3849,7 +3888,7 @@ chip</description>
 </variantdefs>
 <classes>
 <class number="0" name="default" width="0.1524" drill="0.1524">
-<clearance class="0" value="0.254"/>
+<clearance class="0" value="0.127"/>
 </class>
 </classes>
 <parts>
