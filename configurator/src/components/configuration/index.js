@@ -16,7 +16,8 @@ import Divider from '@material-ui/core/Divider';
 import Dropdown from '../dropdown';
 import {uuid} from "../../lib";
 import {Layouts, Inputs, Resolutions, Defaults, Bauds, Boards} from "../../constants";
-
+import {getState} from "../../data";
+import {getConfiguration} from "../../data/actions";
 
 /**
  * Styles
@@ -47,7 +48,7 @@ class _Configuration extends Component {
 
     static defaultProps = {
         open: false,
-        configuration: false,
+        selectedConfiguration: false,
         onUpdate: false,
     }
 
@@ -76,21 +77,15 @@ class _Configuration extends Component {
      */
     handleClose = () => {
         const {onUpdate} = this.props;
-        let configuration = this.state.configuration;
-
-        if(configuration) {
-            if(!configuration.id) configuration.id = uuid(); // issue new one
-            configuration = {...this.defaultConfiguration, ...configuration};
-        }
-        onUpdate && onUpdate(configuration);
+        onUpdate && onUpdate(this.state.configuration);
     };
 
     /**
      * @param prev
      */
     componentDidUpdate(prev) {
-        if(this.props.configuration && (!prev.configuration || (prev.configuration.id != this.props.configuration.id))) {
-            this.setState({configuration: this.props.configuration});
+        if(this.props.selectedConfiguration && (!prev.selectedConfiguration || (prev.selectedConfiguration != this.props.selectedConfiguration))) {
+            this.setState({configuration: getConfiguration(this.props.selectedConfiguration)});
         }
     }
 

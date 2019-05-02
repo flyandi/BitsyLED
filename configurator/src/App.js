@@ -15,7 +15,7 @@ import Configuration from './components/configuration';
 import RangeDialog from './components/rangedialog';
 import Channel from './components/channel';
 import {subscribe, setState, getState} from "./data";
-import {addRange} from "./data/actions";
+import {addRange, addConfiguration, updateConfiguration, removeConfiguration} from "./data/actions";
 
 /**
  * Styles
@@ -77,6 +77,8 @@ class _App extends Component {
         const hasEditRange = Boolean(editRange);
         const hasSelectedConfiguration = Boolean(selectedConfiguration);
 
+        console.log("APP", selectedConfiguration);
+
         return (
             <Fragment>
                 <Grid container className={classes.root}>
@@ -95,19 +97,21 @@ class _App extends Component {
                             </Grid>
                             <Grid item lg>
                                 <RangeList
-                                    configuration={selectedConfiguration}
+                                    selectedConfiguration={selectedConfiguration}
                                     selectedRange={selectedRange}
                                     channelValue={channelValue}
                                 />
                             </Grid>
                             <Grid item>
                                 <Channel
+                                    selectedConfiguration={selectedConfiguration}
                                     channelValue={channelValue}
-                                    configuration={selectedConfiguration}
                                 />
                             </Grid>
                             <Grid item>
-                                <SerialMenu configuration={selectedConfiguration} />
+                                <SerialMenu
+                                    selectedConfiguration={selectedConfiguration}
+                                />
                             </Grid>
                         </Grid>
                     </Grid>
@@ -115,7 +119,9 @@ class _App extends Component {
                         {selectedRange ? (
                             <Fragment>
                                 <EditorMenu />
-                                <Editor configuration={selectedConfiguration} />
+                                <Editor
+                                    selectedConfiguration={selectedConfiguration}
+                                />
                             </Fragment>
                         ) : (
                             <Grid container alignItems="center" style={{height: '100%'}}>
@@ -128,17 +134,16 @@ class _App extends Component {
                 </Grid>
                 <Configuration
                     open={openConfiguration}
-                    configuration={selectedConfiguration}
+                    selectedConfiguration={selectedConfiguration}
                     onCancel={() => this.setState({openConfiguration: false})}
                     onUpdate={configuration => {
                         if(configuration) {
-                            setState({configurations: {[configuration.id]: {...configuration}}, selectedConfiguration: configuration});
+                            updateConfiguration(configuration);
                         }
                         this.setState({
-                            selectedConfiguration: configuration,
                             openBrowser: false,
                             openConfiguration: false
-                        })
+                        });
                     }}
                 />
                 <RangeDialog
@@ -150,8 +155,12 @@ class _App extends Component {
                     configurations={configurations}
                     open={!hasSelectedConfiguration || openBrowser}
                     onSelect={selectedConfiguration => setState({selectedConfiguration})}
-                    onAdd={() => this.setState({selectedConfiguration: {}, openConfiguration: true})}
+                    onAdd={preset => setState({selectedConfiguration: addConfiguration(preset)}, () => this.setState({openConfiguration: true}))}
                     onClose={() => this.setState({openBrowser: false})}
+                    onDelete={id => {
+                        setState({selectedConfiguration: false});
+                        removeConfiguration(id);
+                    }}
                 />
             </Fragment>
         )

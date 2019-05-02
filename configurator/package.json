@@ -6,7 +6,7 @@
     "email": "flyandi@yahoo.com",
     "url": "http://flyandi.net/"
   },
-  "version": "0.6.1",
+  "version": "0.6.2",
   "license": "GPL-3.0-or-later",
   "build": {
     "appId": "net.flyandi.bitsyled",

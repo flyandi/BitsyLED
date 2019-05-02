@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Range from '../range';
 import {ObjectArray} from "../../lib";
+import {getConfiguration} from "../../data/actions";
 
 /**
  * Styles
@@ -28,12 +29,17 @@ const styles = theme => ({
  */
 class _RangeList extends Component {
 
+    static defaultProps = {
+        selectedConfiguration: false
+    }
+
     /**
      * render
      * @returns {*}
      */
     render() {
-        const {classes, configuration, selectedRange, onDelete} = this.props;
+        const {classes, selectedConfiguration, selectedRange} = this.props;
+        const configuration = getConfiguration(selectedConfiguration);
         const {ranges} = configuration;
 
         return (
@@ -49,7 +55,7 @@ class _RangeList extends Component {
                             <Range
                                 selected={range.id == selectedRange}
                                 range={range}
-                                configuration={configuration}
+                                selectedConfiguration={selectedConfiguration}
                             />
                         </Grid>
                     )}

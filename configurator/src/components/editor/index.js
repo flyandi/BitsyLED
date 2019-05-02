@@ -7,8 +7,9 @@ import Grid from '@material-ui/core/Grid';
 import Led from '../led';
 import Color from '../color';
 import {Layouts, Defaults, Speeds} from "../../constants";
-import {subscribe, getState, setState} from "../../data";
+import {subscribe, getState} from "../../data";
 import {ObjectArray} from "../../lib";
+import {getConfiguration, updateLed} from "../../data/actions";
 
 /**
  * Styles
@@ -34,7 +35,7 @@ const styles = theme => ({
 class _Editor extends Component {
 
     static defaultProps = {
-        configuration: false,
+        selectedConfiguration: false,
         width: 20,
         height: 20,
     }
@@ -67,7 +68,6 @@ class _Editor extends Component {
      * @componentDidMount
      */
     componentDidMount() {
-
         subscribe("enableGrid", enableGrid => this.setState({enableGrid}));
         subscribe("enableLayout", enableLayout => this.setState({enableLayout}));
         subscribe("enableEditStrand", enableEditStrand => this.setState({enableEditStrand}));
@@ -101,7 +101,8 @@ class _Editor extends Component {
      */
     reset(selectedRange) {
 
-        const {configuration, width, height} = this.props;
+        const {selectedConfiguration, width, height} = this.props;
+        const configuration = getConfiguration(selectedConfiguration);
 
         let leds = {};
         for(let y = 0; y < height; y++) {
@@ -110,7 +111,7 @@ class _Editor extends Component {
             }
         }
 
-        leds = {...leds, ...((configuration && selectedRange ? getState().configurations[configuration.id].ranges[selectedRange].leds : false) || {})}
+        leds = {...leds, ...((configuration && selectedRange ? configuration.ranges[selectedRange].leds : false) || {})}
 
         return this.setState({
             selectedRange,
@@ -125,7 +126,8 @@ class _Editor extends Component {
      */
     findNextIndex(led) {
 
-        const {configuration} = this.props;
+        const {selectedConfiguration} = this.props;
+        const configuration = getConfiguration(selectedConfiguration);
         let indexes = [];
 
         ObjectArray(this.state).forEach(l => {
@@ -171,28 +173,13 @@ class _Editor extends Component {
      */
     updateLed(led) {
 
-        const {configuration} = this.props;
+        const {selectedConfiguration} = this.props;
         const {selectedRange} = this.state;
-        const {id} = configuration;
-
         if(!selectedRange) return;
 
-        this.setState({[led.id]: led});
 
-        setState({
-            configurations: {
-                [id]: {
-                    ranges: {
-                        [selectedRange]: {
-                            leds: {
-                                [led.id]: led
-                            }
-                        }
-                    }
-                }
-            }
-        }, () => {
-            setState({selectedConfiguration: getState().configurations[id]})
+        this.setState({[led.id]: led}, () => {
+            updateLed(selectedConfiguration, selectedRange, led);
         });
 
         // update simulators
@@ -209,8 +196,11 @@ class _Editor extends Component {
      * @returns {*}
      */
     render() {
-        const {classes, width, height, configuration} = this.props;
+        const {classes, width, height, selectedConfiguration} = this.props;
+        if(!selectedConfiguration) return null;
+
         const {enableGrid, enableLayout, enableEditStrand, selectedStrand, selectedLed, selectedAnchor} = this.state;
+        const configuration = getConfiguration(selectedConfiguration);
         const layout = Layouts[(configuration.layout || Defaults.Layout)];
 
         let grid = [];

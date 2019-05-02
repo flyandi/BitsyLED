@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="8.3.2">
+<eagle version="9.3.2">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -3893,10 +3893,10 @@ chip</description>
 </classes>
 <parts>
 <part name="CPU" library="SparkFun-IC-Microcontroller" deviceset="ATTINY84" device="" value="ATTINY84"/>
-<part name="C1" library="adafruit" deviceset="C-US" device="C0805"/>
+<part name="C1" library="adafruit" deviceset="C-US" device="C0805" value="10uf"/>
 <part name="D1" library="adafruit" deviceset="DIODE" device="SOD-123"/>
 <part name="LED1" library="microbuilder" deviceset="LED" device="0805_NOOUTLINE"/>
-<part name="R1" library="microbuilder" deviceset="RESISTOR" device="_0805"/>
+<part name="R1" library="microbuilder" deviceset="RESISTOR" device="_0805" value="140"/>
 <part name="RL0" library="FPVTools" deviceset="BITSYLED_1X6_RAIL" device="NORMAL"/>
 <part name="RL1" library="FPVTools" deviceset="BITSYLED_1X6_RAIL" device="REVERSED" value="BITSYLED_1X6_RAILREVERSED"/>
 <part name="PRG" library="FPVTools" deviceset="BITSYLED_1X6_RAIL" device="PRG" value="BITSYLED_1X6_RAILPRG"/>
@@ -3908,14 +3908,35 @@ chip</description>
 <text x="-30.48" y="93.98" size="1.778" layer="91">LED Rail</text>
 </plain>
 <instances>
-<instance part="CPU" gate="G$1" x="50.8" y="66.04"/>
-<instance part="C1" gate="G$1" x="10.16" y="74.93"/>
-<instance part="D1" gate="G$1" x="5.08" y="87.63"/>
-<instance part="LED1" gate="G$1" x="38.1" y="22.86"/>
-<instance part="R1" gate="G$1" x="22.86" y="22.86"/>
-<instance part="RL0" gate="G$1" x="-8.89" y="71.12"/>
-<instance part="RL1" gate="G$1" x="-8.89" y="49.53"/>
-<instance part="PRG" gate="G$1" x="120.65" y="86.36"/>
+<instance part="CPU" gate="G$1" x="50.8" y="66.04" smashed="yes">
+<attribute name="NAME" x="30.48" y="84.582" size="1.778" layer="95"/>
+<attribute name="VALUE" x="30.48" y="45.72" size="1.778" layer="96"/>
+</instance>
+<instance part="C1" gate="G$1" x="10.16" y="74.93" smashed="yes">
+<attribute name="NAME" x="11.176" y="75.565" size="1.778" layer="95"/>
+<attribute name="VALUE" x="11.176" y="70.739" size="1.778" layer="96"/>
+</instance>
+<instance part="D1" gate="G$1" x="5.08" y="87.63" smashed="yes">
+<attribute name="NAME" x="2.54" y="90.17" size="1.27" layer="95"/>
+<attribute name="VALUE" x="2.54" y="83.82" size="1.27" layer="96"/>
+</instance>
+<instance part="LED1" gate="G$1" x="38.1" y="22.86" smashed="yes">
+<attribute name="NAME" x="33.02" y="26.035" size="1.27" layer="95"/>
+<attribute name="VALUE" x="33.02" y="20.066" size="1.27" layer="96"/>
+</instance>
+<instance part="R1" gate="G$1" x="22.86" y="22.86" smashed="yes">
+<attribute name="NAME" x="20.32" y="24.892" size="1.27" layer="95" font="vector"/>
+<attribute name="VALUE" x="20.32" y="19.685" size="1.27" layer="96" font="vector"/>
+</instance>
+<instance part="RL0" gate="G$1" x="-8.89" y="71.12" smashed="yes">
+<attribute name="NAME" x="-13.97" y="60.96" size="1.778" layer="95"/>
+</instance>
+<instance part="RL1" gate="G$1" x="-8.89" y="49.53" smashed="yes">
+<attribute name="NAME" x="-13.97" y="39.37" size="1.778" layer="95"/>
+</instance>
+<instance part="PRG" gate="G$1" x="120.65" y="86.36" smashed="yes">
+<attribute name="NAME" x="115.57" y="76.2" size="1.778" layer="95"/>
+</instance>
 </instances>
 <busses>
 </busses>

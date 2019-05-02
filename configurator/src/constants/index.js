@@ -20,6 +20,16 @@ export const VERSION = App.getVersion();
 
 /**
  * @type {{}}
+ */
+export const InternalLinks = {
+    BoardLink: 'https://oshpark.com/shared_projects/B3IAiNyH',
+    GitHub: 'http://github.com/flyandi/bitsyled',
+    Flyandi: 'http://flyandi.net'
+
+}
+
+/**
+ * @type {{}}
  * @todo move this into the board section, right now ok for POC
  */
 export const Strands = {

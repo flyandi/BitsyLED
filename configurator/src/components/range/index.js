@@ -13,7 +13,7 @@ import {subscribe, setState, getState} from "../../data";
 import {Defaults, Inputs, Events, Times} from "../../constants";
 import Menu from '../menu';
 import {uuid} from "../../lib";
-import {updateRange, removeRange, addRange} from "../../data/actions";
+import {updateRange, removeRange, addRange, getConfiguration} from "../../data/actions";
 import Dropdown from '../dropdown';
 
 /**
@@ -67,7 +67,7 @@ class _Range extends Component {
      * @type {{}}
      */
     static defaultProps = {
-        configuration: false,
+        selectedConfiguration: false,
         selected: false,
         channelSelected: false,
         range: {},
@@ -92,15 +92,14 @@ class _Range extends Component {
      * @param change
      */
     handleChange = values => {
-
         this.setState({
             ...values
         }, () => {
-            const {configuration} = this.props;
+            const {selectedConfiguration} = this.props;
             let {id, name, min, max, channelValue} = this.state;
             this.setState({channelSelected: channelValue >= min && channelValue <= max});
             if (!values.channelValue) {
-                updateRange(configuration, {id: id || uuid(), name, min, max})
+                updateRange(selectedConfiguration, {id: id || uuid(), name, min, max})
             }
         });
     }
@@ -113,7 +112,7 @@ class _Range extends Component {
         e.stopPropagation();
         e.preventDefault();
 
-        const {configuration} = this.props;
+        const {selectedConfiguration} = this.props;
         const {id, name} = this.state;
 
         switch(event) {
@@ -124,13 +123,13 @@ class _Range extends Component {
                 }}});
                 break;
             case Events.Remove:
-                removeRange(configuration, {id});
+                removeRange(selectedConfiguration, {id});
                 break;
             case Events.Select:
                 setState({selectedRange: id})
                 break;
             case Events.Duplicate:
-                addRange(configuration, getState().configurations[configuration.id].ranges[id]);
+                addRange(selectedConfiguration, getState().configurations[selectedConfiguration].ranges[id]);
                 break;
         }
     }
@@ -155,9 +154,11 @@ class _Range extends Component {
      * @returns {*}
      */
     render() {
-        const {classes, theme, selected, configuration} = this.props;
-        const {name, max, min, channelSelected, channelValue} = this.state;
+        const {classes, theme, selected, selectedConfiguration} = this.props;
+        const {name, max, min, channelSelected} = this.state;
+        const configuration = getConfiguration(selectedConfiguration);
         const input = Inputs[configuration.input || Defaults.Input];
+
         return (
             <Grid
                 container

@@ -4,43 +4,51 @@ import {setState, getState} from "./index";
 /**
  * @returns {string}
  */
-export const addConfiguration = () => {
+export const addConfiguration = preset => {
     const id = uuid();
     setState({configurations: {
-        [id]: {}
+        [id]: {...(preset || {}), id}
     }});
     return id;
+}
+
+/**
+ * @returns {string}
+ */
+export const getConfiguration = id => {
+    return getState().configurations[id] || {};
 }
 
 /**
  * @param configuration
  */
 export const updateConfiguration = configuration => {
+    if(!configuration.id) return false;
     setState({configurations: {
-        [configuration.id]: configuration
+        [configuration.id]: {...configuration}
     }});
+    return true;
 }
 
 /**
  * @param configuration
  */
-export const removeConfiguration = configuration => {
+export const removeConfiguration = configurationId => {
     let configurations = getState().configurations;
-    const {id} = configuration;
-    if(!configurations[id]) return;
-    delete configurations[id];
+    if(!configurations[configurationId]) return;
+    delete configurations[configurationId];
     setState({configurations});
 }
 
 /**
- * @param configuration
+ * @param configurationId
  * @returns {string}
  */
-export const addRange = (configuration, range = false) => {
+export const addRange = (configurationId, range = false) => {
     const id = uuid();
     setState({
         configurations: {
-            [configuration.id]: {
+            [configurationId]: {
                 ranges: {
                     [id]: {
                         name: 'Unnamed',
@@ -50,33 +58,53 @@ export const addRange = (configuration, range = false) => {
                 }
             }
         }
-    }, () => {
-        setState({selectedConfiguration: getState().configurations[configuration.id]});
     });
+    return id;
 }
 
 /**
  * @param configuration
  * @param range
  */
-export const updateRange = (configuration, range) => {
+export const updateRange = (configurationId, range) => {
     setState({configurations: {
-        [configuration.id]: {
+        [configurationId]: {
             ranges: {
                 [range.id]: range
             }
         },
     }}, () => {
-        setState({selectedConfiguration: getState().configurations[configuration.id]});
+        setState({selectedConfiguration: configurationId});
     })
 }
 
 /**
- * @param configuration
+ * @param id
  * @param range
  */
-export const removeRange = (configuration, range) => {
+export const removeRange = (configurationId, range) => {
     let configurations = getState().configurations;
-    delete configurations[configuration.id].ranges[range.id];
-    setState({configurations, selectedRange: false, selectedConfiguration: configurations[configuration.id]});
+    delete configurations[configurationId].ranges[range.id];
+    setState({configurations, selectedRange: false});
+}
+
+/**
+ * @param configurationId
+ * @param rangeId
+ * @param led
+ */
+export const updateLed  = (configurationId, rangeId, led) => {
+    setState({
+        configurations: {
+            [configurationId]: {
+                ranges: {
+                    [rangeId]: {
+                        leds: {
+                            [led.id]: led
+                        }
+                    }
+                }
+            }
+        }
+    });
 }

@@ -5,12 +5,10 @@ import React, {Component} from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
 import SettingsIcon from '@material-ui/icons/Settings';
 import AddIcon from '@material-ui/icons/Add';
 import MenuIcon from '@material-ui/icons/Menu';
 import FlyAndiLogo from '../../resources/flyandi-logo.svg';
-import {setState} from "../../data";
 
 /**
  * Styles

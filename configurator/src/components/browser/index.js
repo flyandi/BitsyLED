@@ -22,9 +22,11 @@ import Switch from '@material-ui/core/Switch';
 import Menu from '../menu';
 import {ObjectArray} from "../../lib";
 import {getState, setState} from "../../data";
-import {Inputs, Layouts, Defaults, VERSION} from "../../constants";
+import {Inputs, Layouts, Defaults, VERSION, InternalLinks, Events} from "../../constants";
 import Logo from '../../resources/icon.png';
 import Settings from './settings';
+import Presets from '../../resources/presets';
+import {addRange, removeRange} from "../../data/actions";
 
 
 /**
@@ -81,6 +83,7 @@ class _Browser extends Component {
         onAdd: false,
         onSelect: false,
         onClose: false,
+        onRemove: false,
         tab: false,
     }
 
@@ -91,9 +94,13 @@ class _Browser extends Component {
     /**
      * @param selection
      */
-    handleSelect(selection) {
-        const {onSelect, onClose} = this.props;
-        onSelect && onSelect(selection);
+    handleSelect(selection, preset) {
+        const {onSelect, onClose, onAdd} = this.props;
+        if(preset) {
+           onAdd && onAdd(selection);
+        } else {
+            onSelect && onSelect(selection.id);
+        }
         onClose && onClose();
     }
 
@@ -103,7 +110,27 @@ class _Browser extends Component {
      */
     handleChange = (event, tab) => {
         this.setState({ tab });
-    };
+    }
+
+    /**
+     * @param event
+     */
+    handleEvent(e, id, event) {
+
+        e.stopPropagation();
+        e.preventDefault();
+
+        const {onDelete} = this.props;
+
+        switch(event) {
+            case Events.Remove:
+                onDelete && onDelete(id);
+                break;
+            case Events.Duplicate:
+                //addRange(selectedConfiguration, getState().configurations[selectedConfiguration].ranges[id]);
+                break;
+        }
+    }
 
     /**
      * @param item
@@ -117,6 +144,7 @@ class _Browser extends Component {
         }
     }
 
+
     /**
      * render
      * @returns {*}
@@ -128,7 +156,6 @@ class _Browser extends Component {
         return (
             <Dialog
                 open={open}
-                onClose={() => this.handleClose(false)}
             >
                 <Grid container justify="space-between" alignItems="center" className={classes.header}>
                     <Grid item>
@@ -172,16 +199,19 @@ class _Browser extends Component {
         )
     }
 
+    /**
+     * @param tab
+     * @returns {*}
+     */
     renderContent(tab) {
 
         const {configurations, classes} = this.props;
 
         switch(tab) {
-
             case 0:
                 return this.renderList(configurations);
             case 1:
-                return null;
+                return this.renderList(Presets, true);
             default:
                 return (
                     <Fragment>
@@ -216,8 +246,8 @@ class _Browser extends Component {
                             <Grid item style={{marginLeft: 20}}>
                                 <Typography gutterBottom variant="h5" color="textSecondary">BitsyLED Configurator</Typography>
                                 <Typography color="textSecondary">Configurator {VERSION}</Typography>
-                                <Typography>Made by Andy Schwarz (<a target="_blank" href="http://flyandi.net">flyandi.net</a>)</Typography>
-                                <Typography>Licensed under GPLv3.</Typography>
+                                <Typography>Hacked together by Andy "FLY&I" Schwarz</Typography>
+                                <Typography>Licensed under GPLv3</Typography>
                             </Grid>
                         </Grid>
                     </Fragment>
@@ -226,28 +256,34 @@ class _Browser extends Component {
         }
     }
 
-    renderList(items) {
+    /**
+     * @param items
+     * @param preset
+     * @returns {*}
+     */
+    renderList(items, preset = false) {
 
         const {classes} = this.props;
 
         return (
                 <List className={classes.items}>
                 {ObjectArray(items).map(item => {
-                    return (<ListItem key={item.id} button onClick={() => this.handleSelect(item)}>
+                    return (<ListItem key={item.id} button onClick={() => this.handleSelect(item, preset)}>
                         <ListItemText primary={item.name} secondary={
                             [
                                 Inputs[item.input || Defaults.Input].label,
                                 Layouts[item.layout || Defaults.Layout].label,
                             ].join(" · ")
                         }/>
-                        <ListItemSecondaryAction>
-                            <Menu icon={<MoreIcon/>} menu={[
-                                {label: 'Settings',},
-                                {label: 'Duplicate'},
-                                {divider: true},
-                                {label: 'Delete'},
-                            ]}/>
-                        </ListItemSecondaryAction>
+                        {preset ? null : (
+                            <ListItemSecondaryAction>
+                                <Menu icon={<MoreIcon/>} menu={[
+                                    {label: 'Duplicate', fn: event => this.handleEvent(event, item.id, Events.Duplicate)},
+                                    {divider: true},
+                                    {label: 'Remove', fn: event => this.handleEvent(event, item.id, Events.Remove)}
+                                ]} />
+                            </ListItemSecondaryAction>
+                        )}
                     </ListItem>)
                 })}
             </List>
