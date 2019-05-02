@@ -166,11 +166,16 @@ For firmware, you will need the Arduino IDE (easiest). Clone this project and ip
 For the BitsyLED board you need to install ATTINY board support into your IDE.
 
 
-## Help and Discussion
+## Links
 
 For support, help or discussion please visit my official thread on RCGroups: 
 
 https://www.rcgroups.com/forums/showthread.php?3289805-BitsyLED
+
+For regular project updates please visit the project on hackaday.io:
+
+https://hackaday.io/project/165227-bitsyled
+
 
 
 ## License
