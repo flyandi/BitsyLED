@@ -265,25 +265,28 @@ class _Browser extends Component {
 
         const {classes} = this.props;
 
+        console.log(items);
+
         return (
                 <List className={classes.items}>
                 {ObjectArray(items).map(item => {
-                    return (<ListItem key={item.id} button onClick={() => this.handleSelect(item, preset)}>
-                        <ListItemText primary={item.name} secondary={
-                            [
-                                Inputs[item.input || Defaults.Input].label,
-                                Layouts[item.layout || Defaults.Layout].label,
-                            ].join(" · ")
-                        }/>
-                        {preset ? null : (
-                            <ListItemSecondaryAction>
-                                <Menu icon={<MoreIcon/>} menu={[
-                                    {label: 'Duplicate', fn: event => this.handleEvent(event, item.id, Events.Duplicate)},
-                                    {divider: true},
-                                    {label: 'Remove', fn: event => this.handleEvent(event, item.id, Events.Remove)}
-                                ]} />
-                            </ListItemSecondaryAction>
-                        )}
+                    return (
+                        <ListItem key={item.id} button onClick={() => this.handleSelect(item, preset)}>
+                            <ListItemText primary={item.name} secondary={
+                                [
+                                    Inputs[item.input || Defaults.Input].label,
+                                    Layouts[item.layout || Defaults.Layout].label,
+                                ].join(" · ")
+                            }/>
+                            {preset ? null : (
+                                <ListItemSecondaryAction>
+                                    <Menu icon={<MoreIcon/>} menu={[
+                                        /*{label: 'Duplicate', fn: event => this.handleEvent(event, item.id, Events.Duplicate)}
+                                        {divider: true},*/
+                                        {label: 'Remove', fn: event => this.handleEvent(event, item.id, Events.Remove)}
+                                    ]} />
+                                </ListItemSecondaryAction>
+                            )}
                     </ListItem>)
                 })}
             </List>
