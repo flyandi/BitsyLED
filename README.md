@@ -87,9 +87,42 @@ Right now I don't offer a complete build of the BitsyLED board however you can o
 Alternatively the firmware runs perfectly fine on any Arduino compatible board with the caveat that the firmware and configurator settings are statically aligned to the Arduino Pro Mini with a maximum of 1024bytes of EEPROM.
 
 
-### v1.1 
+### v1.2.1 (Latest)
 
-<img src="docs/board.png" />
+<img src="docs/board-1.2.1.png" />
+
+https://oshpark.com/shared_projects/B3IAiNyH
+
+I created a new board that is slimmer and has SMD pad's instead of the drill pad's which gives it more flexibility. The board also comes with an status LED.
+
+#### Parts
+
+All parts available on DigiKey.com. I changed some components in this version!
+
+- 1x ATTINY84 (Part ATTINY84A-SSURCT-ND) 
+- 1x Capacitor in 805 packaging (587-1304-1-ND) 
+- 1x Diode in SOD-123 packaging (MMSZ5231B-TP)
+- 1x Blue LED in 805 packaging (150080BS75000)
+- 1x Resistor in 805 packaging with value of 140ohms (Part RMCF0805FT140R)
+
+#### How to use the board
+
+The board is divided into a top and bottom part. The top part includes the three data channel (Left, Right, Other) as well the input (RC, Analog). The header is designed to be foremost compatible with RC PWM signals (Signal + 5V + GND). 
+
+Be careful not to mix up the upper and lower header from the front side as they are aligned with each other.
+
+The board has 3 LED channels: Left, Right and Other; plus an input channel that either can be served by an RC-PWM or Analog signal. Ensure that your configuration includes the proper input.
+
+The bottom board includes the same 6 position header however it's being used for two purposes: Firmware updates and Configuration.
+
+Follow the connection diagram above how to connect your LED's and Input's.
+
+You will need an USBASP to upload the Firmware and an serial capable board (like FTDI adapter) to upload the configuration from the configurator.
+
+
+### v1.1 (For reference only)
+
+<img src="docs/board-1.1.png" />
 
 https://oshpark.com/shared_projects/E85sUqFS
 
@@ -113,30 +146,9 @@ Follow the connection diagram below how to connect
 You will need an USBASP to upload the Firmware and an serial capable board (like FTDI adapter) to upload the configuration from the configurator.
 
 
-### v1.2.1
+### Future
 
-<img src="docs/board-1.2.1-top.png" />
-
-https://oshpark.com/shared_projects/B3IAiNyH
-
-I created a new board that is slimmer and has SMD pad's instead of the drill pad's which gives it more flexibility. The board also comes with an status LED.
-
-I have not received my own copy of this, so stay tuned for more info.
-
-#### Parts
-
-All parts available on DigiKey.com. I changed some components in this version!
-
-- 1x ATTINY84 (Part ATTINY84A-SSURCT-ND) 
-- 1x Capacitor in 805 packaging (587-1304-1-ND) 
-- 1x Diode in SOD-123 packaging (MMSZ5231B-TP)
-- 1x Blue LED in 805 packaging (150080BS75000)
-- 1x Resistor in 805 packaging with value of 140ohms (Part RMCF0805FT140R)
-
-
-### v2.0
-
-Working on a new board with USB support. Stay tuned.
+Working on a new board with USB support.
 
 
 ### Arduino
