@@ -17,7 +17,8 @@
     },
     "mac": {
       "icon": "app/icons/icons.icns",
-      "category": "public.app-category.productivity"
+      "category": "public.app-category.productivity",
+      "darkModeSupport": true
     },
     "win": {
       "icon": "app/icons/icon.ico",

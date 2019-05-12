@@ -19,7 +19,7 @@
 
 // Firmware flags
 #define ENABLE_LIVE_CHANNEL
-//#define ENABLE_LOCAL_DEV
+//#define ENABLE_LOCAL_DEV // Easier to dev this way
 
 
 /**
@@ -30,6 +30,7 @@
   #define STATIC_HEADER           // Ignores header from serial
   #define USE_SOFT_SERIAL         // Use software serial
   #define SERIAL_BAUD_RATE 9600   
+  #define USE_STATUS_LED          // Supported since 1.2 board
   
   #ifdef ENABLE_LOCAL_DEV
     #define SERIAL_RX_PIN 0     
@@ -42,6 +43,7 @@
   #endif
   
   // board configs
+  #define PIN_STATUS_LED 7
   #define NUM_RANGES 5
   #define NUM_STRANDS 3
   #define NUM_LEDS 10

@@ -42,7 +42,7 @@
 #include "bitsyled_ws2812.h"
 
 // @version
-#define VERSION 102
+#define VERSION 103
 
 
 // @serial configuration
@@ -108,6 +108,10 @@ cRGB color;
   };
 #endif
 
+#ifdef USE_STATUS_LED
+  bool status_led_b = false;
+#endif
+
 
 
 // @header
@@ -162,6 +166,27 @@ uint8_t bexw(uint16_t n, uint8_t o, uint8_t l) {
 // 8 bit
 uint8_t bexb(uint8_t n, uint8_t o, uint8_t l) {
   return bexd(n, o, l, 8);
+}
+
+
+/**
+   @status_led
+   - Turns of when in program
+   - Flash super fast when in serial operation
+   - Flash within 1.5s when idle
+ */
+void status_led(bool operation) {
+  // status led
+  #ifdef USE_STATUS_LED
+    if(range_a > 0) {
+      digitalWrite(PIN_STATUS_LED, 0); 
+    } else if(operation) {
+      status_led_b != status_led_b;
+      digitalWrite(PIN_STATUS_LED, status_led_b); 
+    } else {
+      digitalWrite(PIN_STATUS_LED, bitRead(timers_s, 6)); 
+    }
+  #endif
 }
 
 
@@ -340,8 +365,8 @@ void mux_ranges() {
  */
 void identify_strand() {
   clear_all();
-  color.r = 255;
-  color.g = 0;
+  color.r = 0;
+  color.g = 255;
   color.b = 0;
   for(uint8_t n = 0; n < NUM_STRANDS; n++) {
     strands_a[n].set_color(0, color);
@@ -393,11 +418,12 @@ void begin_update() {
     } else {
       wait = millis() - timeout < SERIAL_TIMEOUT;
     }
+    status_led(true);
   }
   uint8_t r[3] = {SERIAL_COMMAND_DONE, lowByte(address), highByte(address)};
 
   serial.write(r, 3);
-
+  
   recover();
 }
 
@@ -550,10 +576,7 @@ void loop() {
     }
     #endif
 
-    // status led
-    #ifdef USE_STATUS_LED
-      digitalWrite(PIN_STATUS_LED, bitRead(timers_s, 6));
-    #endif
+    status_led(false);
   }
 
   delay(15); // save timer
