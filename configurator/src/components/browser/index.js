@@ -265,8 +265,6 @@ class _Browser extends Component {
 
         const {classes} = this.props;
 
-        console.log(items);
-
         return (
                 <List className={classes.items}>
                 {ObjectArray(items).map(item => {

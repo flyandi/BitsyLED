@@ -42,7 +42,7 @@
 #include "bitsyled_ws2812.h"
 
 // @version
-#define VERSION 103
+#define VERSION 104
 
 
 // @serial configuration
@@ -52,9 +52,9 @@
 #define SERIAL_COMMAND_MARKER 3
 #define SERIAL_COMMAND_DONE 4
 
-
 // @constants
 #define SERIAL_TIMEOUT 1000
+#define SERIAL_INPUT_BUFFER 16    
 #define NUM_SPEEDS 7
 #define MODE_RC 0
 #define MODE_ANALOG 1
@@ -90,12 +90,12 @@ cRGB color;
 // @todo because of memory limit, I will keep this static until a future rewrite
 #ifdef BOARD_BITSYLED
   WS2812 strands_a[NUM_STRANDS] = {
-    WS2812(2), // left
-    WS2812(3), // right
+    WS2812(1), // left
+    WS2812(2), // right
     #ifdef ENABLE_LOCAL_DEV 
       WS2812(10)  // other
     #else
-      WS2812(1)   // other
+      WS2812(3)   // other 
     #endif
   };
 #endif
@@ -365,8 +365,8 @@ void mux_ranges() {
  */
 void identify_strand() {
   clear_all();
-  color.r = 0;
-  color.g = 255;
+  color.r = 255;
+  color.g = 0;
   color.b = 0;
   for(uint8_t n = 0; n < NUM_STRANDS; n++) {
     strands_a[n].set_color(0, color);
@@ -401,28 +401,26 @@ void begin_update() {
   uint8_t wait = 1, i, a, b;
   uint16_t address = 0;
 
-  identify_strand();
-
   while (wait) {
     a = serial.available();
     if (a > 0) {
       while (serial.available()) {
         b = serial.read();
         EEPROM.write(address, b);
-        timeout = millis();
+        delay(9); // safety timer for eeprom 8.5ms
         address++;
+        timeout = millis(); // reset per write
       }
       if (serial.available() == 0) {
-        serial.write(SERIAL_COMMAND_MARKER); // send maker that we read the buffer
+        serial.write(SERIAL_COMMAND_MARKER); // send marker that we read the buffer
       }
-    } else {
-      wait = millis() - timeout < SERIAL_TIMEOUT;
+    } else {  
+      wait = (millis() - timeout) < SERIAL_TIMEOUT;
     }
     status_led(true);
   }
-  uint8_t r[3] = {SERIAL_COMMAND_DONE, lowByte(address), highByte(address)};
-
-  serial.write(r, 3);
+  uint8_t r[4] = {SERIAL_COMMAND_DONE, lowByte(address), highByte(address), wait};
+  serial.write(r, 4);
   
   recover();
 }
@@ -527,6 +525,7 @@ void setup() {
 
   pinMode(PIN_INPUT, INPUT);
   serial.begin(SERIAL_BAUD_RATE);
+  
   recover();
 
   #ifdef USE_STATUS_LED

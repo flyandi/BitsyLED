@@ -77,8 +77,6 @@ class _App extends Component {
         const hasEditRange = Boolean(editRange);
         const hasSelectedConfiguration = Boolean(selectedConfiguration);
 
-        console.log("APP", selectedConfiguration);
-
         return (
             <Fragment>
                 <Grid container className={classes.root}>

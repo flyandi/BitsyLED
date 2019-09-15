@@ -10,6 +10,7 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import {subscribe} from "../../data";
 import {Defaults, Inputs} from "../../constants";
+import {getConfiguration} from "../../data/actions";
 
 /**
  * @type {number}
@@ -46,7 +47,7 @@ class _Channel extends Component {
      * @type {{}}
      */
     static defaultProps = {
-        configuration: false,
+        selectedConfiguration: false,
         range: {},
     }
 
@@ -89,7 +90,8 @@ class _Channel extends Component {
         const {channelValue} = this.state;
         //if(channelValue === false) return null;
 
-        const {classes, theme, selected, configuration} = this.props;
+        const {classes, theme, selected, selectedConfiguration} = this.props;
+        const configuration = getConfiguration(selectedConfiguration);
         const input = Inputs[configuration.input || Defaults.Input];
 
         return (

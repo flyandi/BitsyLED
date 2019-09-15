@@ -1,5 +1,6 @@
 import {uuid} from "../lib";
 import {setState, getState} from "./index";
+import {Defaults} from "../constants";
 
 /**
  * @returns {string}

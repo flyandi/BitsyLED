@@ -33,26 +33,26 @@ export const InternalLinks = {
  * @todo move this into the board section, right now ok for POC
  */
 export const Strands = {
-    l: {
+    o: {
         pin: 1,
+        name: 'Other Strand',
+        short: 'O',
+        color: blue[300],
+        selectedColor: blue[800],
+    },
+    l: {
+        pin: 2,
         name: 'Left Strand',
         short: 'L',
         color: deepOrange[300],
         selectedColor: deepOrange[800],
     },
     r: {
-        pin: 2,
+        pin: 3,
         name: 'Right Strand',
         short: 'R',
         color: green[300],
         selectedColor: green[800],
-    },
-    o: {
-        pin: 3,
-        name: 'Other Strand',
-        short: 'O',
-        color: blue[300],
-        selectedColor: blue[800],
     },
 }
 

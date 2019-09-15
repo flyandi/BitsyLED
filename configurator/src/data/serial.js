@@ -14,7 +14,7 @@ const SerialPort = window.require( "electron" ).remote.require( "serialport" );
 /**
  * @type {number}
  */
-const SERIAL_BUFFER = 5; // smaller chunks
+const SERIAL_BUFFER = 16; // smaller chunks
 
 /**
  * @param a
@@ -126,11 +126,11 @@ export const SerialCommand = {
     },
     DONE: {
         cmd: 4,
-        expected: 2,
+        expected: 3,
         invoke: (buffer, parent) => {
             // next
             const written = byteInt(buffer);
-            parent.completeSerialTransfer(written);
+            parent.completeSerialTransfer(written,  buffer[2]);
         }
     }
 }
@@ -247,8 +247,6 @@ led =   <r, g, b, mirror, pattern, speed>
         });
     });
 
-    console.log(result);
-
     return result;
 }
 
@@ -262,7 +260,5 @@ export const convertToChunks = payload => {
     for (let i=0, j=payload.length; i<j; i+=SERIAL_BUFFER) {
         chunks.push(payload.slice(i, i + SERIAL_BUFFER));
     }
-    console.log(chunks);
-
     return chunks;
 }

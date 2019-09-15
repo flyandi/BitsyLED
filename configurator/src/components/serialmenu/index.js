@@ -19,6 +19,7 @@ import {ObjectArray} from "../../lib";
 import InfoDialog from './info';
 import UploadDialog from './upload';
 import SerialMessages from './messages';
+import {getConfiguration} from "../../data/actions";
 
 /**
  * @native-imports
@@ -63,7 +64,7 @@ class _SerialMenu extends Component {
      * @type {{configuration: {}}}
      */
     static defaultProps = {
-        configuration: {}
+        selectedConfiguration: {}
     }
 
     /**
@@ -132,10 +133,13 @@ class _SerialMenu extends Component {
      * @handleConnection
      */
     handleConnection() {
+        const {selectedConfiguration} = this.props;
         let {serial} = this.state;
-        const {baud} = this.props.configuration;
+        const configuration = getConfiguration(selectedConfiguration);
+        const {baud} = configuration;
 
-        if(!serial) {
+        if(!serial && baud) {
+
             this.setState({status: SerialStatus.CONNECTING});
 
             const instance =  new SerialPort(this.state.selected, {
@@ -154,7 +158,6 @@ class _SerialMenu extends Component {
                 });
             });
         } else {
-
             this.handleSerialError('close');
         }
     }
@@ -210,10 +213,11 @@ class _SerialMenu extends Component {
      */
     updateSerialData() {
 
-        const {selectedConfiguration, serial} = this.state;
+        const {selectedConfiguration} = this.props;
+        const {serial} = this.state;
         if(!selectedConfiguration) return;
 
-        const config = getState().configurations[selectedConfiguration.id];
+        const config = getConfiguration(selectedConfiguration);
         const payload = getSerialPayload(config);
         const chunks = convertToChunks(payload);
 
@@ -230,9 +234,15 @@ class _SerialMenu extends Component {
      */
     transferSerialChunk() {
         const {serialTransfer, serialCurrentChunk, serial} = this.state;
-        if(!Boolean(serial) || !serialTransfer || !this.serialTransferChunks[serialCurrentChunk]) {
+
+        if(!Boolean(serial) || !serialTransfer) {
             return this.setState({serialTransfer: false});
         }
+
+        if(serialCurrentChunk >= this.serialTransferChunks.length) {
+            return; // do nothing
+        }
+
         serial.write(new Uint8Array(this.serialTransferChunks[serialCurrentChunk]), r => {
             this.setState({serialCurrentChunk: serialCurrentChunk + 1});
         });
@@ -241,10 +251,9 @@ class _SerialMenu extends Component {
     /**
      * @param written
      */
-    completeSerialTransfer(written) {
+    completeSerialTransfer(written, timeout) {
         const {serialExpectedWritten} = this.state;
         const serialUploadException = written != serialExpectedWritten;
-
         this.setState({serialTransfer: false, serialUploadException, serialWritten: written, status: SerialStatus.DONE});
         setTimeout(() => {
             this.setState({serialTransfer: false, status: SerialStatus.CONNECTED});
@@ -259,8 +268,6 @@ class _SerialMenu extends Component {
         subscribe("serialBoardStatus", info => {
             this.setState({info, infoDialog: Boolean(info)});
         });
-        subscribe("selectedConfiguration", () => this.setState({selectedConfiguration: getState().selectedConfiguration}));
-        this.updateSerialData();
     }
 
     /**

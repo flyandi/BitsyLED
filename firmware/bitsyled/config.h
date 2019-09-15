@@ -38,7 +38,7 @@
     #define PIN_INPUT 9
   #else
     #define SERIAL_RX_PIN 5           
-    #define SERIAL_TX_PIN 6
+    #define SERIAL_TX_PIN 6       // Use pin 4 for BitsyLED Board < 1.2.1, ensure layout it also adjusted
     #define PIN_INPUT 0
   #endif
   
@@ -47,7 +47,6 @@
   #define NUM_RANGES 5
   #define NUM_STRANDS 3
   #define NUM_LEDS 10
-
 #endif
 
 /**
